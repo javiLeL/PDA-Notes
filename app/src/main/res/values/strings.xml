@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">PDA Notes</string>
+    <string name="poseescuenta">No tienes cuenta aun?<i> </i></string>
+    <string name="registrarBtn"><u>Registrar</u></string>
+    <string name="hint_correo_electronico">correo-electronico</string>
+    <string name="hint_password">contraseña</string>
+</resources>
