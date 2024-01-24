@@ -23,9 +23,9 @@ public class ModeloBBDD {
         return resultado;
     }
     String[] selectUsuario(Context context, String correo){
-        String[] resultado = new String[1];
+        String[] resultado = new String[2];
         SQLiteDatabase sqLiteDatabase = this.getCon(context);
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT nombre FROM usuarios WHERE correo=?", new String[]{correo});
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT nombre, password FROM usuarios WHERE correo=?", new String[]{correo});
         if(cursor.moveToFirst()){
             do{
                 for(int i=0;i<resultado.length;i++) {
