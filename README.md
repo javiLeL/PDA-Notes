@@ -3,6 +3,10 @@ PDA Notes es una app la cual esta diseñada para poseer notas y puede servir a v
 
 Para que las contraseñas sean mas seguras se hace uso de MD5 para poder tener la contraseña asegurada para cualquier tipo de problema informatico.
 
+## Esquema de la BBDD
+
+![](https://github.com/javiLeL/PDA-Notes/blob/main/BBDD_PDANotes.png)
+
 ## Requisitos funcionales
 
 Al se una app de caracter escolar presnta ciertos requisitos minimos los cuales son:
