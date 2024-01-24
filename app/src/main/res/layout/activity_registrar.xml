@@ -4,17 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".Registrar">
+
+    <TextView
+        android:id="@+id/textViewSincronizarCuenta2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:text="@string/tituloRegistrar"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="103dp"
-        android:layout_marginTop="60dp"
+        android:layout_width="413dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal"
-        android:paddingLeft="20sp"
-        android:paddingRight="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -25,7 +36,8 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:contentDescription="@string/logo"
-            app:srcCompat="@drawable/logo_256" />
+            app:srcCompat="@drawable/logo_256"
+            tools:layout_marginLeft="10sp" />
 
         <TextView
             android:id="@+id/textView7"
@@ -34,7 +46,7 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:text="@string/app_name"
-            android:textSize="35sp"
+            android:textSize="25sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -42,29 +54,39 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textViewSincronizarCuenta"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:gravity="center"
-        android:text="@string/tituloSincronizarCuenta"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutCorreo"
+        android:id="@+id/textInputLayoutNombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20sp"
         android:layout_marginTop="40dp"
         android:layout_marginRight="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSincronizarCuenta"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSincronizarCuenta2"
         app:startIconDrawable="@drawable/baseline_account_circle_24_light_mode">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextNombreRegistrar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_nombre"
+            android:inputType="textPersonName" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutCorreo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutNombre"
+        app:startIconDrawable="@drawable/ic_email_24">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextCorreoElectronicoRegistrar"
@@ -96,39 +118,13 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/buttonIniciarSesion"
+        android:id="@+id/buttonRegistrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="@string/inicioSesionbtn"
+        android:text="@string/registrarbtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayoutContraseña" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonIniciarSesion">
-
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/poseescuenta"
-            android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/textRegistrar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/registrarbtn"
-            android:textColor="@color/link"
-            android:textSize="15sp" />
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

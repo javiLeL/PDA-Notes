@@ -2,9 +2,11 @@
     <string name="app_name">PDA Notes</string>
     <string name="logo">logo</string>
     <string name="poseescuenta">No tienes cuenta aun?<i> </i></string>
-    <string name="registrarBtn"><u>Registrar</u></string>
+    <string name="registrarbtn"><u>Registrar</u></string>
+    <string name="hint_nombre">nombre</string>
+    <string name="tituloRegistrar">Cree su cuenta</string>
     <string name="hint_correo_electronico">correo-electronico</string>
     <string name="hint_password">contraseña</string>
-    <string name="tituloSincronizarCuenta">Sincroniza tu cuenta</string>
-    <string name="inicioSesionbtn">Iniciar Sesion</string>
+    <string name="tituloSincronizarCuenta">Sincronice su cuenta</string>
+    <string name="inicioSesionbtn"><u>Iniciar Sesion</u></string>
 </resources>
