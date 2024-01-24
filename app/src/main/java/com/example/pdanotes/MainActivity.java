@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
     @Override
