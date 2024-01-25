@@ -15,11 +15,22 @@ import java.util.Base64;
 public class Nota {
     private static final int KEY_LENGTH = 256;
     private static final int ITERATION_COUNT = 65536;
+    private Integer id;
     String titulo, nota, correo;
     public Nota(String titulo, String nota, String correo) {
         this.titulo = titulo;
         this.nota = nota;
         this.correo = correo;
+    }
+    public Nota(Integer id, String titulo, String nota, String correo) {
+        this.id = id;
+        this.titulo = titulo;
+        this.nota = nota;
+        this.correo = correo;
+    }
+
+    public int getId() {
+        return id;
     }
     public String getTitulo() {
         return titulo;
