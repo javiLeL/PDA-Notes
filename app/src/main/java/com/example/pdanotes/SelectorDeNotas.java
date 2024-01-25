@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SelectorDeNotas extends AppCompatActivity {
     RecyclerView rv;
@@ -25,13 +26,14 @@ public class SelectorDeNotas extends AppCompatActivity {
         rv = findViewById(R.id.rv);
         // rv.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         rv.setLayoutManager(new StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL));
-
+        /*
         ArrayList<Nota> notas = new ArrayList<>();
         notas.add(new Nota(1, "Titulo 1", "hola soy una nota", "correo"));
         notas.add(new Nota(2, "Titulo 2", "no soy una nota", "correo"));
         notas.add(new Nota(3, "Titulo 3", "awa man es que me muero", "correo"));
         notas.add(new Nota(4, "Aiuda :,)", "aiuda auxilio me desmaandiaudapuidapidhaida9duha\nidahwiduhadiuahdawuhdaduha\ndaiudhaiduhawdauhdaiwudhawiduh", "correo"));
-
+        */
+        List<Nota> notas = new ArrayList<>(new ModeloBBDD().selectNotas(getApplicationContext(), correo, pass));
         rv.setAdapter(new Adapter(notas, getApplicationContext()));
         rv.setHasFixedSize(true);
     }
