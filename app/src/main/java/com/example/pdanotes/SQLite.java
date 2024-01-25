@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 
 public class SQLite extends SQLiteOpenHelper {
 
-    final String TABLA_USUARIOS = "CREATE TABLE usuarios(correo VARCHAR(50) PRIMARY KEY, nombre VARCHAR(50), password VARCHAR(32))";
+    final String TABLA_USUARIOS = "CREATE TABLE usuarios(correo TEXT PRIMARY KEY, nombre VARCHAR(50), password VARCHAR(32))";
 
     public SQLite(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
