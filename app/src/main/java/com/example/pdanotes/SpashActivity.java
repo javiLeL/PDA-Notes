@@ -8,7 +8,7 @@ import android.os.Handler;
 import android.widget.ProgressBar;
 
 public class SpashActivity extends AppCompatActivity {
-    final int tiempo = 3000;
+    final int tiempo = 5000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
