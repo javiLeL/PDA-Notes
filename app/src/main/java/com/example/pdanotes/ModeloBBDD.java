@@ -6,9 +6,21 @@ import android.database.sqlite.SQLiteDatabase;
 
 public class ModeloBBDD {
     public SQLiteDatabase getCon(Context context){
-        SQLite conBBDD = new SQLite(context, "BBDDUsuarios", null, 1);
+        SQLite conBBDD = new SQLite(context, "BBDD_PDA_Notes", null, 1);
         SQLiteDatabase sqLiteDatabase = conBBDD.getWritableDatabase();
         return  sqLiteDatabase;
+    }
+    boolean insertarNotas(Context context, Nota datos){
+        boolean resultado;
+        String sentencia = "INSERT INTO notas (titulo, nota, correo) VALUES('"+datos.getTitulo()+"', '"+datos.getNota()+"', '"+datos.getCorreo()+"')";
+        SQLiteDatabase sqLiteDatabase = this.getCon(context);
+        try{
+            sqLiteDatabase.execSQL(sentencia);
+            resultado = true;
+        }catch (Exception e){
+            resultado = false;
+        }
+        return resultado;
     }
     boolean insertarUsuario(Context context, Usuario datos){
         boolean resultado;

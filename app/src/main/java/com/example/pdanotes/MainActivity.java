@@ -26,7 +26,11 @@ public class MainActivity extends AppCompatActivity {
 
                     if(nombre!=null){
                         if (Usuario.getMD5(password).equals(passwdbbdd)) {
-                            Toast.makeText(MainActivity.this, "Usuario encontrado Entrando", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getApplicationContext(), SelectorDeNotas.class);
+                            intent.putExtra("correo", correo);
+                            intent.putExtra("pass", password);
+                            startActivity(intent);
+                            // Toast.makeText(MainActivity.this, "Usuario encontrado Entrando", Toast.LENGTH_SHORT).show();
                         } else {
                             v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.error_btn));
                             Toast.makeText(MainActivity.this, "Contraseña Incorrecta", Toast.LENGTH_SHORT).show();
