@@ -1,6 +1,8 @@
 package com.example.pdanotes;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -8,18 +10,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.AnimeViewHolder> {
     List<Nota> notas;
+    String pass;
     Context context;
-    public Adapter(List<Nota> notas, Context context){
+    Activity act;
+    public Adapter(List<Nota> notas, Context context, String pass, Activity act){
         this.notas = notas;
         this.context = context;
+        this.pass = pass;
+        this.act = act;
     }
     @NonNull
     @Override
@@ -30,7 +38,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.AnimeViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull AnimeViewHolder holder, int position) {
-        holder.bind(notas.get(position));
+        holder.bind(notas.get(position), context, pass, act);
     }
 
     @Override
@@ -47,9 +55,24 @@ public class Adapter extends RecyclerView.Adapter<Adapter.AnimeViewHolder> {
             titulo = itemView.findViewById(R.id.textViewTitulo);
             nota = itemView.findViewById(R.id.textViewNota);
         }
-        void bind(Nota note){
+        void bind(Nota note, Context context, String pass, Activity act){
             titulo.setText(note.getTitulo());
             nota.setText(note.getNota());
+            v.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Toast.makeText(context, ""+note.getId(), Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(context, CreadorDeNotas.class);
+
+                    intent.putExtra("id", note.getId());
+                    intent.putExtra("titulo", note.getTitulo());
+                    intent.putExtra("nota", note.getNota());
+                    intent.putExtra("correo", note.getCorreo());
+                    intent.putExtra("pass", pass);
+
+                    act.startActivity(intent);
+                }
+            });
             buttonEffect(v);
         }
     }

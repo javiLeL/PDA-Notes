@@ -13,15 +13,31 @@ public class ModeloBBDD {
         SQLiteDatabase sqLiteDatabase = conBBDD.getWritableDatabase();
         return  sqLiteDatabase;
     }
+    void delete(Context context, int id){
+        String sentencia = "DELETE FROM notas WHERE id="+id;
+        SQLiteDatabase sqLiteDatabase = this.getCon(context);
+        try{
+            sqLiteDatabase.execSQL(sentencia);
+        }catch (Exception e){
+        }
+    }
+    void updateNota(Context context, int id, Nota nota){
+        String sentencia = "UPDATE notas SET titulo='"+nota.getTitulo()+"', nota='"+nota.getNota()+"', correo='"+nota.getCorreo()+"' WHERE id="+id;
+        SQLiteDatabase sqLiteDatabase = this.getCon(context);
+        try{
+            sqLiteDatabase.execSQL(sentencia);
+        }catch (Exception e){
+        }
+    }
     List<Nota> selectNotas(Context context, String correo, String pass){
         List<Nota> resultado = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = this.getCon(context);
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT id, titulo, nota, correo FROM notas WHERE correo=?", new String[]{correo});
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT id, titulo, nota FROM notas WHERE correo=?", new String[]{correo});
         if(cursor.moveToFirst()){
             do{
-                Integer id = cursor.getInt(1);
-                String titulo = cursor.getString(2);
-                String nota = cursor.getString(3);
+                Integer id = cursor.getInt(0);
+                String titulo = cursor.getString(1);
+                String nota = cursor.getString(2);
                 resultado.add(new Nota(id, titulo, Nota.decrypt(nota, pass, pass), correo));
             }while (cursor.moveToNext());
         }
