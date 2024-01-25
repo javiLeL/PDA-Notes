@@ -36,9 +36,9 @@ Al se una app de caracter escolar presnta ciertos requisitos minimos los cuales 
 ### Elementos de funcionalidad y diseño
 
 - SplashScreen
-    - [ ] Debe de incluir un SplashScreen
-        - [ ] Debe ser la primera que se lanza al iniciar la aplicación.
-        - [ ] No vuelve a ejecutarse. Cuando termine el tiempo de espera (5 segundos) no se puede volver a ver esta ventana.
+    - [x] Debe de incluir un SplashScreen
+        - [x] Debe ser la primera que se lanza al iniciar la aplicación.
+        - [x] No vuelve a ejecutarse. Cuando termine el tiempo de espera (5 segundos) no se puede volver a ver esta ventana.
 - Ventana de Preferencias
     - [ ] Contiene tres categorías de diferentes tipos: ListPreference, CheckBoxPreference y EditTextPreference.
 - Notificaciones, DatePicker y TimePicker
