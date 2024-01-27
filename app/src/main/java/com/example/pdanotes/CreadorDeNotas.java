@@ -58,7 +58,7 @@ public class CreadorDeNotas extends AppCompatActivity implements  NavigationView
             titulo.setText(titulor);
             nota.setText(notar);
         }
-        setSupportActionBar((Toolbar) findViewById(R.id.toolbarCreadorDeNotas));
+        
         ProgressDialog a = new ProgressDialog(this);
         a.setTitle("Gurdando sus datos");
         a.setCancelable(false);
