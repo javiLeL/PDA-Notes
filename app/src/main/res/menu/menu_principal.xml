@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" >
+
+    <group android:checkableBehavior="none"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+        <item
+            android:id="@+id/apartado_de_notas"
+            android:icon="@drawable/note_edit"
+            android:title="Notas" />
+        <item
+            android:id="@+id/apartado_de_eventos"
+            android:icon="@drawable/calendar_month"
+            android:title="Eventos" />
+        <item
+            android:id="@+id/apartado_de_"
+            android:icon="@drawable/cog"
+            android:title="Settings" />
+        <item android:title="">
+            <menu
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+                <item
+                    android:id="@+id/cerrar_nota"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:icon="@drawable/info"
+                    android:title="Sobre nosotros" />
+            </menu>
+        </item>
+    </group>
+</menu>

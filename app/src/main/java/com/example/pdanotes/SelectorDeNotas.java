@@ -1,27 +1,50 @@
 package com.example.pdanotes;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
+import com.google.android.material.navigation.NavigationView;
+
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SelectorDeNotas extends AppCompatActivity {
+public class SelectorDeNotas extends AppCompatActivity implements  NavigationView.OnNavigationItemSelectedListener{
+    DrawerLayout drawer;
+    NavigationView navigationView;
+    Toolbar toolbar;
     RecyclerView rv;
     String correo, pass;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selector_de_notas);
+
+        // Creando el menu
+        drawer = findViewById(R.id.drawer_principal);
+        navigationView = findViewById(R.id.navigation_principal);
+        toolbar = findViewById(R.id.toolbar);
+
+        setSupportActionBar(toolbar);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.app_name, R.string.app_name);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        // Recogiendo informacion que se le pasa
         correo = getIntent().getExtras().getString("correo");
         pass = getIntent().getExtras().getString("pass");
 
@@ -48,5 +71,11 @@ public class SelectorDeNotas extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
         update();
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 }

@@ -2,10 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="210sp"
-    android:background="@drawable/cabecera"
+    android:background="#A08F70CF"
     android:orientation="vertical"
     android:padding="10sp">
-
+    <!--android:background="@drawable/cabecera"-->
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
