@@ -2,13 +2,19 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:id="@+id/guardar_nota"
-        android:title="Guardar" />
-    <item
-        android:id="@+id/borrar_nota"
-        android:title="Borrar" />
-    <item
-        android:id="@+id/awa"
-        android:title="a?" />
+    <group android:checkableBehavior="single"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+        <item
+            android:id="@+id/guardar_nota"
+            android:title="Guardar" />
+        <item
+            android:id="@+id/borrar_nota"
+            android:title="Borrar" />
+        <item android:title="">
+            <menu
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </item>
+    </group>
 </menu>

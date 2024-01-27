@@ -43,7 +43,6 @@ public class SelectorDeNotas extends AppCompatActivity {
         List<Nota> notas = new ArrayList<>(new ModeloBBDD().selectNotas(getApplicationContext(), correo, pass));
         rv.setAdapter(new Adapter(notas, getApplicationContext(), pass, this));
         rv.setHasFixedSize(true);
-
     }
     @Override
     protected void onRestart() {
