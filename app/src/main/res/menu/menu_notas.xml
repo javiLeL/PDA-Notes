@@ -8,4 +8,7 @@
     <item
         android:id="@+id/borrar_nota"
         android:title="Borrar" />
+    <item
+        android:id="@+id/awa"
+        android:title="a?" />
 </menu>

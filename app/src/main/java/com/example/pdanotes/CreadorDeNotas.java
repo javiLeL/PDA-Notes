@@ -1,11 +1,10 @@
 package com.example.pdanotes;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.content.DialogInterface;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,6 +35,10 @@ public class CreadorDeNotas extends AppCompatActivity {
             nota.setText(notar);
         }
         setSupportActionBar((Toolbar) findViewById(R.id.toolbarCreadorDeNotas));
+        ProgressDialog a = new ProgressDialog(this);
+        a.setTitle("Gurdando sus datos");
+        a.setCancelable(false);
+        a.setProgressStyle(0);
     }
 
     @Override
@@ -47,17 +50,30 @@ public class CreadorDeNotas extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId()==R.id.guardar_nota){
-            if (id==0) {
-                boolean isInsertado = new ModeloBBDD().insertarNotas(getApplicationContext(), new Nota(titulo.getText().toString(), Nota.encrypt(nota.getText().toString(), pass, pass), correo));
-                if (isInsertado) {
-                    // Toast.makeText(this, "Nota Guardada", Toast.LENGTH_SHORT).show();
-                    finish();
+            Thread save = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    if (id==0) {
+                        boolean isInsertado = new ModeloBBDD().insertarNotas(getApplicationContext(), new Nota(titulo.getText().toString(), Nota.encrypt(nota.getText().toString(), pass, pass), correo));
+                        if (isInsertado) {
+                            // Toast.makeText(this, "Nota Guardada", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                    }else {
+                        // Toast.makeText(this, ""+id, Toast.LENGTH_SHORT).show();
+                        new ModeloBBDD().updateNota(getApplicationContext(), id, new Nota(titulo.getText().toString(), Nota.encrypt(nota.getText().toString(), pass, pass), correo));
+                        finish();
+                    }
                 }
-            }else {
-                // Toast.makeText(this, ""+id, Toast.LENGTH_SHORT).show();
-                new ModeloBBDD().updateNota(getApplicationContext(), id, new Nota(titulo.getText().toString(), Nota.encrypt(nota.getText().toString(), pass, pass), correo));
-                finish();
-            }
+            });
+            ProgressDialog progressDialog = new ProgressDialog(this);
+            progressDialog.setTitle("Gurdando sus datos");
+            progressDialog.setCancelable(false);
+            progressDialog.setProgressStyle(0);
+            save.start();
+            progressDialog.show();
+
+
         }else if (item.getItemId()==R.id.borrar_nota){
             if (id==0){
                 Toast.makeText(this, "Primero debes de crear la nota para borrarla", Toast.LENGTH_SHORT).show();
@@ -65,7 +81,6 @@ public class CreadorDeNotas extends AppCompatActivity {
                 new ModeloBBDD().delete(getApplicationContext(), id);
                 finish();
             }
-
         }
         return super.onOptionsItemSelected(item);
     }

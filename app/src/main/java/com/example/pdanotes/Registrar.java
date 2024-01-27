@@ -21,11 +21,10 @@ public class Registrar extends AppCompatActivity {
         findViewById(R.id.buttonRegistrar).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String nombre =((EditText) findViewById(R.id.editTextNombreRegistrar)).getText().toString();
-                String correo =((EditText) findViewById(R.id.editTextCorreoElectronicoRegistrar)).getText().toString();
+                String nombre =((EditText) findViewById(R.id.editTextNombreRegistrar)).getText().toString().trim();
+                String correo =((EditText) findViewById(R.id.editTextCorreoElectronicoRegistrar)).getText().toString().trim();
                 String password =((EditText) findViewById(R.id.editTextPasswordRegistrar)).getText().toString();
-                
-                        
+
                 if (!nombre.isEmpty() && !correo.isEmpty() && !password.isEmpty()){
                     boolean isCreado = new ModeloBBDD().insertarUsuario(getApplicationContext(), new Usuario(correo, nombre, password));
                     if(!isCreado){
