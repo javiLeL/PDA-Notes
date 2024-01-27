@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -105,6 +106,24 @@ public class CreadorDeNotas extends AppCompatActivity implements  NavigationView
                 new ModeloBBDD().delete(getApplicationContext(), id);
                 finish();
             }
+        } else if (item.getItemId() == R.id.cerrar_nota) {
+            Thread save = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Thread.currentThread().sleep(400);
+                    }catch (Exception e){
+                        throw new RuntimeException(e);
+                    }
+                    finish();
+                }
+            });
+            ProgressDialog progressDialog = new ProgressDialog(this);
+            progressDialog.setTitle("Saliendo del modo editor");
+            progressDialog.setCancelable(false);
+            progressDialog.setProgressStyle(0);
+            save.start();
+            progressDialog.show();
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
