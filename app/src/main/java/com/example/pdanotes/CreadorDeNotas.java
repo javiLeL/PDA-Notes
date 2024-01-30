@@ -49,8 +49,8 @@ public class CreadorDeNotas extends AppCompatActivity implements  NavigationView
 
         // Recogiendo informacion que se le pasa
 
-        botonGuardar = findViewById(R.id.floatingActionButtonGuardarNotas);
-        botonBorrar = findViewById(R.id.floatingActionButtonBorrarNotas);
+        botonGuardar = findViewById(R.id.floatingActionButtonGuardarEvento);
+        botonBorrar = findViewById(R.id.floatingActionButtonBorrarEvento);
 
         abrir = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.abrir);
         cerrar = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.cerrar);

@@ -11,15 +11,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+
 import com.google.android.material.navigation.NavigationView;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SelectorDeNotas extends AppCompatActivity implements  NavigationView.OnNavigationItemSelectedListener{
+public class SelectorDeEventos extends AppCompatActivity implements  NavigationView.OnNavigationItemSelectedListener{
     DrawerLayout drawer;
     NavigationView navigationView;
     Toolbar toolbar;
@@ -28,9 +32,7 @@ public class SelectorDeNotas extends AppCompatActivity implements  NavigationVie
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_selector_de_notas);
-
-        // Creando el menu
+        setContentView(R.layout.activity_selector_de_eventos);
         drawer = findViewById(R.id.drawer_principal);
         navigationView = findViewById(R.id.navigation_principal);
         toolbar = findViewById(R.id.toolbar);
@@ -48,23 +50,24 @@ public class SelectorDeNotas extends AppCompatActivity implements  NavigationVie
 
         rv = findViewById(R.id.rv);
         // rv.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-        update();
         findViewById(R.id.floatingActionButtonCrearEvento).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), CreadorDeNotas.class);
+                Intent intent = new Intent(getApplicationContext(), CreadorDeEventos.class);
                 intent.putExtra("correo", correo);
                 intent.putExtra("pass", pass);
                 startActivity(intent);
             }
         });
+
+        update();
     }
     void update(){
-        rv.setLayoutManager(new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL));
-        List<Nota> notas = new ArrayList<>(new ModeloBBDD().selectNotas(getApplicationContext(), correo, pass));
-        rv.setAdapter(new AdapterNotas(notas, getApplicationContext(), pass, this));
-        //rv.setHasFixedSize(fa);
+        rv.setLayoutManager(new StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL));
+        List<Evento> eventos = new ArrayList<>(new ModeloBBDD().selectEventos(getApplicationContext(), correo, pass));
+        rv.setAdapter(new AdapterEventos(eventos, getApplicationContext(), pass, this));
     }
+
     @Override
     protected void onRestart() {
         super.onRestart();
@@ -73,8 +76,8 @@ public class SelectorDeNotas extends AppCompatActivity implements  NavigationVie
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId()==R.id.apartado_de_eventos){
-            Intent intent = new Intent(this, SelectorDeEventos.class);
+        if (item.getItemId() == R.id.apartado_de_notas){
+            Intent intent = new Intent(this, SelectorDeNotas.class);
             intent.putExtra("correo", correo);
             intent.putExtra("pass", pass);
             startActivity(intent);

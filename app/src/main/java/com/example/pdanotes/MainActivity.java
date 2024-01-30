@@ -80,11 +80,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onRestart() {
         // Al arrancar el layout
         super.onRestart();              // Llamo  al metodo original
-        correo.setText("");             // Se reinicia el texto del correo
-        correo.requestFocus();          // Se pone el foco en el correo
-        password.setText("");           // Se reinicia el texto de la contraseña
-        if(progressDialog!=null) {      // Si el dialogo de carga no es null
-            progressDialog.cancel();    // Este dejara de funcionar
+        try {
+            correo.setText("");             // Se reinicia el texto del correo
+            correo.requestFocus();          // Se pone el foco en el correo
+            password.setText("");           // Se reinicia el texto de la contraseña
+            if (progressDialog != null) {      // Si el dialogo de carga no es null
+                progressDialog.cancel();    // Este dejara de funcionar
+            }
+        }catch (Exception e){
+
         }
     }
 }

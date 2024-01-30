@@ -3,7 +3,10 @@ package com.example.pdanotes;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +24,41 @@ public class ModeloBBDD {
         }catch (Exception e){
         }
     }
+    List<Evento> selectEventos(Context context, String correo, String pass){
+        List<Evento> resultado = new ArrayList<>();
+        SQLiteDatabase sqLiteDatabase = this.getCon(context);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT id, titulo, tipo, fecha, hora FROM eventos WHERE correo=?", new String[]{correo});
+        if(cursor.moveToFirst()){
+            do{
+                Integer id = cursor.getInt(0);
+                String titulo = cursor.getString(1);
+                String tipo = cursor.getString(2);
+                String fechaG = cursor.getString(3);
+                String horaG = cursor.getString(4);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    LocalDate fecha = LocalDate.of(Integer.parseInt(fechaG.split("-")[0]),  Integer.parseInt(fechaG.split("-")[1]), Integer.parseInt(fechaG.split("-")[2]));
+                    LocalTime hora = LocalTime.of(Integer.parseInt(horaG.split(":")[0]), Integer.parseInt(horaG.split(":")[1]));
+                    resultado.add(new Evento(id, titulo, tipo, fecha, hora, correo));
+                }
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        return resultado;
+    }
+    boolean insertarEvento(Context context, Evento datos){
+        boolean resultado;
+        String sentencia = "INSERT INTO eventos(titulo, tipo, fecha, hora, correo) VALUES('"+datos.getTitulo()+"', '"+datos.getTipo()+"', '"+datos.getFecha().toString()+"', '"+datos.getHora().toString()+"', '"+datos.getCorreo()+"')";
+        SQLiteDatabase sqLiteDatabase = this.getCon(context);
+        try{
+            sqLiteDatabase.execSQL(sentencia);
+            resultado = true;
+        }catch (Exception e){
+            resultado = false;
+        }
+        return resultado;
+    }
+
     void updateNota(Context context, int id, Nota nota){
         String sentencia = "UPDATE notas SET titulo='"+nota.getTitulo()+"', nota='"+nota.getNota()+"', correo='"+nota.getCorreo()+"' WHERE id="+id;
         SQLiteDatabase sqLiteDatabase = this.getCon(context);

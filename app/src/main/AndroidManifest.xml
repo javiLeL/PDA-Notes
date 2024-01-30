@@ -13,6 +13,12 @@
         android:theme="@style/Theme.PDANotes"
         tools:targetApi="31">
         <activity
+            android:name=".CreadorDeEventos"
+            android:exported="false" />
+        <activity
+            android:name=".SelectorDeEventos"
+            android:exported="false" />
+        <activity
             android:name=".CreadorDeNotas"
             android:exported="false" />
         <activity

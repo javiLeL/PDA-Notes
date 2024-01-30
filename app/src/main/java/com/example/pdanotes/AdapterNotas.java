@@ -8,22 +8,19 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AlphaAnimation;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class Adapter extends RecyclerView.Adapter<Adapter.AnimeViewHolder> {
+public class AdapterNotas extends RecyclerView.Adapter<AdapterNotas.AnimeViewHolder> {
     List<Nota> notas;
     String pass;
     Context context;
     Activity act;
-    public Adapter(List<Nota> notas, Context context, String pass, Activity act){
+    public AdapterNotas(List<Nota> notas, Context context, String pass, Activity act){
         this.notas = notas;
         this.context = context;
         this.pass = pass;
@@ -53,7 +50,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.AnimeViewHolder> {
             super(itemView);
             v = itemView;
             titulo = itemView.findViewById(R.id.textViewTitulo);
-            nota = itemView.findViewById(R.id.textViewNota);
+            nota = itemView.findViewById(R.id.textViewTipoEvento);
         }
         void bind(Nota note, Context context, String pass, Activity act){
             titulo.setText(note.getTitulo());
