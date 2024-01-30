@@ -21,7 +21,7 @@ Al se una app de caracter escolar presnta ciertos requisitos minimos los cuales 
         - [ ] **RadioButton**
         - [ ] **CheckBox**
         - [ ] **Switch**
-        - [ ] **ImagenButton**
+        - [x] **ImagenButton**
         - [x] **Button**
     - [x] Deben aparecer *dos elementos* de los citados a continuación:
         - [ ] **RatingBar**
