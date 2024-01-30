@@ -17,7 +17,7 @@
         <item
             android:id="@+id/apartado_de_"
             android:icon="@drawable/cog"
-            android:title="Settings" />
+            android:title="Ajustes" />
         <item android:title="">
             <menu
                 android:layout_width="match_parent"

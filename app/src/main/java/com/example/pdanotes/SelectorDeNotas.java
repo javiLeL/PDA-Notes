@@ -62,10 +62,10 @@ public class SelectorDeNotas extends AppCompatActivity implements  NavigationVie
         });
     }
     void update(){
-        rv.setLayoutManager(new StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL));
+        rv.setLayoutManager(new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL));
         List<Nota> notas = new ArrayList<>(new ModeloBBDD().selectNotas(getApplicationContext(), correo, pass));
         rv.setAdapter(new Adapter(notas, getApplicationContext(), pass, this));
-        rv.setHasFixedSize(true);
+        //rv.setHasFixedSize(fa);
     }
     @Override
     protected void onRestart() {

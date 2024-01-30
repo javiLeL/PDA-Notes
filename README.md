@@ -16,13 +16,23 @@ Al se una app de caracter escolar presnta ciertos requisitos minimos los cuales 
 - Elementos obligatorios
     - [x] La aplicación debe contener mínimo 4 Layouts, de los cuales al menos dos, no pueden ser tipo ConstraintLayout.
     - [ ] Deben aparecer campos de texto variados (todos): Plain Text, AutocompleteTextView, Spinner, MultiAutocompleteTextView, Texto Multilinea.
-    - [ ] Deben aparecer diferentes tipos de botones (*al menos cuatro de los indicados*): **ToggleButton, RadioButton, CheckBox, Switch, ImagenButton, Button**.
-    - [ ] Deben aparecer *dos elementos* de los citados a continuación: **RatingBar, SeekBar, progressBar circular, progressBar Lineal**.
+    - [ ] Deben aparecer diferentes tipos de botones (*al menos cuatro de los indicados*): 
+        - [ ] **ToggleButton**
+        - [ ] **RadioButton**
+        - [ ] **CheckBox**
+        - [ ] **Switch**
+        - [ ] **ImagenButton**
+        - [x] **Button**
+    - [x] Deben aparecer *dos elementos* de los citados a continuación:
+        - [ ] **RatingBar**
+        - [ ] **SeekBar**
+        - [x] **ProgressBar circular**
+        - [x] **progressBar Lineal**.
     - [x] Deben aparecer **imágenes** que se deben almacenar en su carpeta de recursos
     correspondiente.
     - [ ] Las **fuentes de texto deben de ser variadas** y se deben **almacenar en la carpeta de recursos correspondiente**.
 - Ventana de acceso/registro:
-    - [ ] Los fondos de los Layouts deben ser todos **personalizados** con cualquiera de las opciones vistas en clase.
+    - [x] Los fondos de los Layouts deben ser todos **personalizados** con cualquiera de las opciones vistas en clase.
     - [ ] Debe aparecer **al menos una animación (***Lottie***)** que se debe de almacenar en su carpeta correspondiente.
     - [x] Debe aparecer una **animación combinada** (*dos movimientos de libre elección*) que se
     debe almacenar en su carpeta correspondiente.
