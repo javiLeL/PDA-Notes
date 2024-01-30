@@ -72,7 +72,7 @@
             app:srcCompat="@drawable/menu" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingActionButtonGuardarEvento"
+            android:id="@+id/floatingActionButtonGuardarNota"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
@@ -85,14 +85,14 @@
             app:srcCompat="@drawable/content_save" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingActionButtonBorrarEvento"
+            android:id="@+id/floatingActionButtonBorrarNota"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="25dp"
             android:clickable="true"
             app:backgroundTint="@android:color/holo_red_light"
-            app:layout_constraintBottom_toTopOf="@+id/floatingActionButtonGuardarEvento"
+            app:layout_constraintBottom_toTopOf="@+id/floatingActionButtonGuardarNota"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"

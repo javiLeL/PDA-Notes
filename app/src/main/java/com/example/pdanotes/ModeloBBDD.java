@@ -16,8 +16,24 @@ public class ModeloBBDD {
         SQLiteDatabase sqLiteDatabase = conBBDD.getWritableDatabase();
         return  sqLiteDatabase;
     }
-    void delete(Context context, int id){
+    void deleteEventos(Context context, int id){
+        String sentencia = "DELETE FROM eventos WHERE id="+id;
+        SQLiteDatabase sqLiteDatabase = this.getCon(context);
+        try{
+            sqLiteDatabase.execSQL(sentencia);
+        }catch (Exception e){
+        }
+    }
+    void deleteNotas(Context context, int id){
         String sentencia = "DELETE FROM notas WHERE id="+id;
+        SQLiteDatabase sqLiteDatabase = this.getCon(context);
+        try{
+            sqLiteDatabase.execSQL(sentencia);
+        }catch (Exception e){
+        }
+    }
+    void updateEvento(Context context, Evento dato){
+        String sentencia = "UPDATE eventos SET titulo='"+dato.getTitulo()+"', tipo='"+dato.getTipo()+"', fecha='"+dato.getFecha().toString()+"', hora='"+dato.getHora().toString()+"' WHERE id="+dato.getId();
         SQLiteDatabase sqLiteDatabase = this.getCon(context);
         try{
             sqLiteDatabase.execSQL(sentencia);

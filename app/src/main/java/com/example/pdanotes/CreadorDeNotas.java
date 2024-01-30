@@ -49,8 +49,8 @@ public class CreadorDeNotas extends AppCompatActivity implements  NavigationView
 
         // Recogiendo informacion que se le pasa
 
-        botonGuardar = findViewById(R.id.floatingActionButtonGuardarEvento);
-        botonBorrar = findViewById(R.id.floatingActionButtonBorrarEvento);
+        botonGuardar = findViewById(R.id.floatingActionButtonGuardarNota);
+        botonBorrar = findViewById(R.id.floatingActionButtonBorrarNota);
 
         abrir = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.abrir);
         cerrar = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.cerrar);
@@ -146,7 +146,7 @@ public class CreadorDeNotas extends AppCompatActivity implements  NavigationView
         if (id==0){
             Toast.makeText(this, "Primero debes de crear la nota para borrarla", Toast.LENGTH_SHORT).show();
         }else {
-            new ModeloBBDD().delete(getApplicationContext(), id);
+            new ModeloBBDD().deleteNotas(getApplicationContext(), id);
             finish();
         }
     }

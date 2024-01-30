@@ -3,12 +3,12 @@ package com.example.pdanotes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
@@ -44,6 +44,21 @@ public class CreadorDeEventos extends AppCompatActivity {
         tipo = findViewById(R.id.editTextTextTipo);
         fecha = findViewById(R.id.editTextTextFecha);
         hora = findViewById(R.id.editTextTextHora);
+
+        // Poniendo los datos
+        if(id!=0) {
+            titulo.setText(titulor);
+            tipo.setText(tipor);
+            fecha.setText(fechar);
+            hora.setText(horar);
+
+            calendar.set(Integer.parseInt(fechar.split("-")[0]), Integer.parseInt(fechar.split("-")[1]), Integer.parseInt(fechar.split("-")[2]), Integer.parseInt(horar.split(":")[0]), Integer.parseInt(horar.split(":")[1]));
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                fechaG = LocalDate.of(Integer.parseInt(fechar.split("-")[0]), Integer.parseInt(fechar.split("-")[1]), Integer.parseInt(fechar.split("-")[2]));
+                horaG = LocalTime.of(Integer.parseInt(horar.split(":")[0]), Integer.parseInt(horar.split(":")[1]));
+            }
+        }
 
         findViewById(R.id.imageButtonSelecionarFecha).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,7 +97,19 @@ public class CreadorDeEventos extends AppCompatActivity {
         findViewById(R.id.floatingActionButtonGuardarEvento).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveEvento();
+                if (fechaG!=null && horaG!=null && titulo!=null && tipo!=null) {
+                    saveEvento();
+                }else {
+                    Toast.makeText(CreadorDeEventos.this, "No se olvide de rellenar todos los campos", Toast.LENGTH_SHORT).show();
+                    v.startAnimation(AnimationUtils.loadAnimation(CreadorDeEventos.this, R.anim.error_btn));
+                }
+            }
+        });
+
+        findViewById(R.id.floatingActionButtonBorrarEvento).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteEvento();
             }
         });
     }
@@ -98,6 +125,8 @@ public class CreadorDeEventos extends AppCompatActivity {
                         finish();
                     }
                 }else {
+                    new ModeloBBDD().updateEvento(getApplicationContext(), new Evento(id, titulo.getText().toString(), tipo.getText().toString(), fechaG, horaG, correo));
+                    finish();
                     /*
                     // Toast.makeText(this, ""+id, Toast.LENGTH_SHORT).show();
                     new ModeloBBDD().updateNota(getApplicationContext(), id, new Nota(titulo.getText().toString(), Nota.encrypt(nota.getText().toString(), pass, pass), correo));
@@ -112,5 +141,13 @@ public class CreadorDeEventos extends AppCompatActivity {
         progressDialog.setProgressStyle(0);
         save.start();
         // progressDialog.show();
+    }
+    void deleteEvento(){
+        if (id==0){
+            Toast.makeText(this, "Primero debes de crear el evento para borrarlo", Toast.LENGTH_SHORT).show();
+        }else {
+            new ModeloBBDD().deleteEventos(getApplicationContext(), id);
+            finish();
+        }
     }
 }
