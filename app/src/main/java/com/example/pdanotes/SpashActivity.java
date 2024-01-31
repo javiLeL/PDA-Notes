@@ -18,7 +18,7 @@ public class SpashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 ProgressBar progressBar = findViewById(R.id.progressBar);
-                for (int i=0;i<=100;i++){
+                for (int i=1;i<=100;i++){
                     try {
                         Thread.currentThread().sleep((tiempo-100)/100);
                     }catch (Exception e){

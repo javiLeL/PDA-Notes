@@ -5,4 +5,6 @@
     <color name="link">#FF7676FF</color>
     <color name="boton">#A06750A3</color>
     <color name="transparent">#00000000</color>
+    <color name="colorPrimary">#A05640B2</color>
+    <color name="colorPrimaryDark">#A08787FF</color>
 </resources>
