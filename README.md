@@ -64,3 +64,7 @@ Al se una app de caracter escolar presnta ciertos requisitos minimos los cuales 
     - [ ] Librerías externas
     - [ ] Fragments
     - [x] Material Design
+
+# Bibliografia
+
+- [ProgresBar](https://gist.github.com/codinginflow/477606b85ed11c537a81e80224361878)
