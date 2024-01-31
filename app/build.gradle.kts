@@ -32,6 +32,7 @@ android {
 }
 
 dependencies {
+    implementation("com.airbnb.android:lottie:6.3.0")
     implementation("com.airbnb.android:lottie:6.1.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
