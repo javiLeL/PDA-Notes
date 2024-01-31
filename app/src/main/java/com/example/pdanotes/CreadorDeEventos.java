@@ -127,11 +127,6 @@ public class CreadorDeEventos extends AppCompatActivity {
                 }else {
                     new ModeloBBDD().updateEvento(getApplicationContext(), new Evento(id, titulo.getText().toString(), tipo.getText().toString(), fechaG, horaG, correo));
                     finish();
-                    /*
-                    // Toast.makeText(this, ""+id, Toast.LENGTH_SHORT).show();
-                    new ModeloBBDD().updateNota(getApplicationContext(), id, new Nota(titulo.getText().toString(), Nota.encrypt(nota.getText().toString(), pass, pass), correo));
-                    finish();
-                    */
                 }
             }
         });
@@ -140,7 +135,7 @@ public class CreadorDeEventos extends AppCompatActivity {
         progressDialog.setCancelable(false);
         progressDialog.setProgressStyle(0);
         save.start();
-        // progressDialog.show();
+        progressDialog.show();
     }
     void deleteEvento(){
         if (id==0){

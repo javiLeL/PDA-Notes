@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -11,6 +12,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
@@ -56,15 +59,23 @@ public class MainActivity extends AppCompatActivity {
                             // Toast.makeText(MainActivity.this, "Usuario encontrado Entrando", Toast.LENGTH_SHORT).show();
                         } else {
                             v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.error_btn));
-                            Toast.makeText(MainActivity.this, "Contraseña Incorrecta", Toast.LENGTH_SHORT).show();
+                            Snackbar.make(v, "Contraseña Incorrecta", Snackbar.LENGTH_SHORT).show();
                         }
                     }else {
+                        Snackbar snackbar = Snackbar.make(v, "Usuario no encontrado", Snackbar.LENGTH_SHORT)
+                                .setActionTextColor(getColor(R.color.link))
+                                .setAction("registrese", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        startActivity(new Intent(MainActivity.this, Registrar.class));
+                                    }
+                                });
+                        snackbar.show();
                         v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.error_btn));
-                        Toast.makeText(MainActivity.this, "Usuario no encontrado registrese", Toast.LENGTH_SHORT).show();
                     }
                 }else {
                     v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.error_btn));
-                    Toast.makeText(MainActivity.this, "No se olvide de rellenar todos los campos", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(v, "No se olvide de rellenar todos los campos", Snackbar.LENGTH_SHORT).show();
                 }
             }
         });

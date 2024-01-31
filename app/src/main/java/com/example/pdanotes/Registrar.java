@@ -2,14 +2,18 @@ package com.example.pdanotes;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.math.BigInteger;
-import java.security.MessageDigest;
+import com.google.android.material.snackbar.Snackbar;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Registrar extends AppCompatActivity {
 
@@ -26,19 +30,59 @@ public class Registrar extends AppCompatActivity {
                 String password =((EditText) findViewById(R.id.editTextPasswordRegistrar)).getText().toString();
 
                 if (!nombre.isEmpty() && !correo.isEmpty() && !password.isEmpty()){
-                    boolean isCreado = new ModeloBBDD().insertarUsuario(getApplicationContext(), new Usuario(correo, nombre, password));
-                    if(!isCreado){
+                    if (isCorreo(correo)){
+                        Snackbar.make(v, "Asegurese de poner su correo real", Snackbar.LENGTH_LONG).show();
                         v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.error_btn));
-                        Toast.makeText(Registrar.this, "Error al crear el registro", Toast.LENGTH_SHORT).show();
-                    }else {
-                        Toast.makeText(Registrar.this, "Registro Creado", Toast.LENGTH_SHORT).show();
-                        finish();
+                    } else if (isPasswd(password)) {
+                        Snackbar snackbar = Snackbar.make(v, "Asegurese de poner una contraseña mas larga", Snackbar.LENGTH_LONG);
+                        snackbar.setAction("como minimo 8 letras", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                snackbar.dismiss();
+                            }
+                        });
+                        snackbar.setActionTextColor(Color.RED);
+                        snackbar.show();
+                        v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.error_btn));
+                    } else if (isNombre(nombre)) {
+
+                        Snackbar snackbar = Snackbar.make(v, "Asegurese de poner un nombre mas largo", Snackbar.LENGTH_LONG);
+                        snackbar.setAction("como minimo de 4 letras", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                snackbar.dismiss();
+                            }
+                        });
+                        snackbar.setActionTextColor(Color.RED);
+                        snackbar.show();
+                        v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.error_btn));
+                    } else {
+                        boolean isCreado = new ModeloBBDD().insertarUsuario(getApplicationContext(), new Usuario(correo, nombre, password));
+                        if(!isCreado){
+                            v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.error_btn));
+                            Toast.makeText(Registrar.this, "Error al crear el registro", Toast.LENGTH_SHORT).show();
+                        }else {
+                            Toast.makeText(Registrar.this, "Registro Creado", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
                     }
+
                 }else {
-                    Toast.makeText(Registrar.this, "No se olvide de rellenar todos los campos", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(v, "No se olvide de rellenar todos los campos", Snackbar.LENGTH_SHORT).show();
                     v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.error_btn));
                 }
             }
         });
+    }
+    boolean isCorreo(String correo){
+        Pattern pattern = Patterns.EMAIL_ADDRESS;
+        Matcher matcher = pattern.matcher(correo);
+        return !matcher.matches();
+    }
+    boolean isPasswd(String pass){
+        return pass.length()<8;
+    }
+    boolean isNombre(String nombre){
+        return nombre.length()<4;
     }
 }
