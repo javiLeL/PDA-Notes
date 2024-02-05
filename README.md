@@ -22,15 +22,15 @@ Al se una app de caracter escolar presnta ciertos requisitos minimos los cuales 
         - [x] MultiAutocompleteTextView
         - [x] Texto Multilinea
     - [x] Deben aparecer diferentes tipos de botones (*al menos cuatro de los indicados*): 
-        - [ ] **ToggleButton**
+        - [ ] ~**ToggleButton**~
         - [x] **RadioButton**
         - [x] **CheckBox**
-        - [ ] **Switch**
+        - [ ] ~**Switch**~
         - [x] **ImagenButton**
         - [x] **Button**
     - [x] Deben aparecer *dos elementos* de los citados a continuación:
-        - [ ] **RatingBar**
-        - [ ] **SeekBar**
+        - [ ] ~**RatingBar**~
+        - [ ] ~**SeekBar**~
         - [x] **ProgressBar circular**
         - [x] **progressBar Lineal**.
     - [x] Deben aparecer **imágenes** que se deben almacenar en su carpeta de recursos
