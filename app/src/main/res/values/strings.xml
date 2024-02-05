@@ -24,5 +24,14 @@
         <item>Pascuas</item>
         <item></item>
     </string-array>
+    <string-array name="compras">
+        <item>Platano</item>
+        <item>Pera</item>
+        <item>Jamon</item>
+        <item>Raton</item>
+        <item>Teclado</item>
+        <item>Ordenador</item>
+        <item></item>
+    </string-array>
 
 </resources>

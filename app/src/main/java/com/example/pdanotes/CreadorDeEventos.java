@@ -11,6 +11,7 @@ import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AnimationUtils;
@@ -76,7 +77,18 @@ public class CreadorDeEventos extends AppCompatActivity implements  NavigationVi
         descripcion = findViewById(R.id.editTextTextMultiLineDescripcion);
 
         // Pasando los datos al autocomplete view
-        tipo.setAdapter(ArrayAdapter.createFromResource(this, R.array.tipos_de_evento, android.R.layout.simple_spinner_item));
+        tipo.setAdapter(ArrayAdapter.createFromResource(this, R.array.tipos_de_evento, android.R.layout.simple_spinner_dropdown_item));
+        descripcion.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                String isThisTipo = tipo.getText().toString().trim();
+                if (isThisTipo.equals("Compra")){
+                    descripcion.setAdapter(ArrayAdapter.createFromResource(CreadorDeEventos.this, R.array.compras, android.R.layout.simple_list_item_1));
+                }
+            }
+        });
+        // descripcion.setAdapter(ArrayAdapter.createFromResource(getApplicationContext(), R.array.compras, android.R.layout.simple_dropdown_item_1line));
+        descripcion.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
         // Poniendo los datos
         if(id!=0) {
             titulo.setText(titulor);
