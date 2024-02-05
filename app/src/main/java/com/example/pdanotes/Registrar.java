@@ -2,6 +2,7 @@ package com.example.pdanotes;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -75,6 +76,12 @@ public class Registrar extends AppCompatActivity {
                     Snackbar.make(v, "No se olvide de rellenar todos los campos", Snackbar.LENGTH_SHORT).show();
                     v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.error_btn));
                 }
+            }
+        });
+        findViewById(R.id.textViewVerPoliticas).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), PoliticasDePrivacidad.class));
             }
         });
     }

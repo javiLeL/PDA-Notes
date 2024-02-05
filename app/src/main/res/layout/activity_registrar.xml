@@ -104,6 +104,11 @@
             android:hint="@string/hint_password"
             android:inputType="textPassword" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"></LinearLayout>
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <CheckBox
@@ -113,6 +118,28 @@
         android:layout_gravity="center"
         android:layout_marginTop="20sp"
         android:text="@string/terminos_y_condiciones" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Revisa nuestras politicas " />
+
+        <TextView
+            android:id="@+id/textViewVerPoliticas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/terminos_y_condiciones2"
+            android:textColor="@color/link" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/buttonRegistrar"

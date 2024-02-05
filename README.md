@@ -21,9 +21,9 @@ Al se una app de caracter escolar presnta ciertos requisitos minimos los cuales 
         - [ ] Spinner
         - [ ] MultiAutocompleteTextView
         - [x] Texto Multilinea
-    - [ ] Deben aparecer diferentes tipos de botones (*al menos cuatro de los indicados*): 
+    - [x] Deben aparecer diferentes tipos de botones (*al menos cuatro de los indicados*): 
         - [ ] **ToggleButton**
-        - [ ] **RadioButton**
+        - [x] **RadioButton**
         - [x] **CheckBox**
         - [ ] **Switch**
         - [x] **ImagenButton**
