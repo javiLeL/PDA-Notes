@@ -1,11 +1,14 @@
 package com.example.pdanotes;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Patterns;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.CheckBox;
@@ -13,6 +16,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -84,6 +88,26 @@ public class Registrar extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), PoliticasDePrivacidad.class));
             }
         });
+
+        // Contextual
+        registerForContextMenu(findViewById(R.id.editTextNombreRegistrar));
+    }
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        getMenuInflater().inflate(R.menu.menu_contextual, menu);
+        super.onCreateContextMenu(menu, v, menuInfo);
+    }
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        TextInputEditText editTextNombre = findViewById(R.id.editTextNombreRegistrar);
+        if(item.getItemId() == R.id.set_red){
+            editTextNombre.setTextColor(Color.RED);
+        } else if (item.getItemId() == R.id.set_upper) {
+            editTextNombre.setText(editTextNombre.getText().toString().toUpperCase());
+        } else if (item.getItemId() == R.id.set_loweer) {
+            editTextNombre.setText(editTextNombre.getText().toString().toLowerCase());
+        }
+        return super.onContextItemSelected(item);
     }
     boolean isCorreo(String correo){
         Pattern pattern = Patterns.EMAIL_ADDRESS;

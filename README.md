@@ -42,7 +42,7 @@ Al se una app de caracter escolar presnta ciertos requisitos minimos los cuales 
     - [x] Debe aparecer una **animación combinada** (*dos movimientos de libre elección*) que se
     debe almacenar en su carpeta correspondiente.
     - [x] Se incluirá un **menú** con varias opciones, a la que una de ellas estará asociada a un **submenú**. Este elemento se vincula a su correspondiente **Toolbar** y los elementos necesarios se almacenarán en la carpeta correspondiente de recursos.
-    - [ ] Un **menú contextual** asociado a todos los Plain Text de la ventana de formulario (se explica más adelante) para que el contenido escrito por el usuario se pueda poner en mayúsculas, minúsculas o en color ROJO. Los elementos necesarios se almacenarán en la carpeta correspondiente de recursos.
+    - [x] Un **menú contextual** asociado a todos los Plain Text de la ventana de formulario *(se explica más adelante)* para que el contenido escrito por el usuario se pueda poner en **mayúsculas, minúsculas o en color ROJO**. Los elementos necesarios se almacenarán en la carpeta correspondiente de recursos.
     - [x] Se utilizará persistencia para almacenar y validar todos los datos de los usuarios. Esta ventana no se contabiliza como parte de los layouts mínimos de diseño de la aplicación.
         - [x] Debe tener mínimo dos campos de texto: uno para escribir el nombre de usuario o email y otro  introducir la contraseña.
         - [x] Debe tener dos botones: uno que me permita acceder a la aplicación una vez haya informado los campos y otro que permita registrarse como nuevo usuario.

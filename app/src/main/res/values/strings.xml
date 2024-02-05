@@ -16,6 +16,7 @@
     <string name="ingles">English</string>
     <string name="chino">中国</string>
     <string-array name="tipos_de_evento">
+        <item>Medico</item>
         <item>Boda</item>
         <item>Compra</item>
         <item>Examen</item>
