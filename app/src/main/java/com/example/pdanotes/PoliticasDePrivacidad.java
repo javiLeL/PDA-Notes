@@ -16,6 +16,7 @@ public class PoliticasDePrivacidad extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_politicas_de_privacidad);
         seleccionarPolitica = findViewById(R.id.textViewTituloSeleccionarIdioma);
+        setText("Seleccione un idioma para leer los terminos y condiciones");
         ((RadioGroup) findViewById(R.id.idiomas)).setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {

@@ -25,7 +25,6 @@
                 android:layout_height="150sp"
                 android:layout_margin="20sp"
                 android:gravity="center"
-                android:text="Seleccione un idioma para leer los terminos y condiciones"
                 android:textSize="25sp" />
 
             <RadioGroup
@@ -36,22 +35,22 @@
 
                 <RadioButton
                     android:id="@+id/radioButtonEspano"
-                    android:layout_width="100sp"
+                    android:layout_width="200sp"
                     android:layout_height="wrap_content"
                     android:checked="true"
-                    android:text="Español" />
+                    android:text="@string/espanol" />
 
                 <RadioButton
                     android:id="@+id/radioButtonIngles"
-                    android:layout_width="100sp"
+                    android:layout_width="200sp"
                     android:layout_height="wrap_content"
-                    android:text="English" />
+                    android:text="@string/ingles" />
 
                 <RadioButton
                     android:id="@+id/radioButtonChino"
-                    android:layout_width="100sp"
+                    android:layout_width="200sp"
                     android:layout_height="wrap_content"
-                    android:text="中国" />
+                    android:text="@string/chino" />
             </RadioGroup>
         </LinearLayout>
     </ScrollView>

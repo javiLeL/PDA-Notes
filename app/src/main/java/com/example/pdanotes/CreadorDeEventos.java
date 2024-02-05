@@ -1,12 +1,17 @@
 package com.example.pdanotes;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
@@ -16,17 +21,22 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.google.android.material.navigation.NavigationView;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Calendar;
 
-public class CreadorDeEventos extends AppCompatActivity {
+public class CreadorDeEventos extends AppCompatActivity implements  NavigationView.OnNavigationItemSelectedListener{
     Integer id;
     EditText titulo,  fecha, hora;
     String titulor, tipor, fechar, horar, correo, pass;
     LocalTime horaG;
     LocalDate fechaG;
     AutoCompleteTextView tipo;
+    DrawerLayout drawer;
+    NavigationView navigationView;
+    Toolbar toolbar;
     final Calendar calendar = Calendar.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +51,19 @@ public class CreadorDeEventos extends AppCompatActivity {
 
         correo = getIntent().getExtras().getString("correo");
         pass = getIntent().getExtras().getString("pass");
+
+        // Creando el menu
+
+        drawer = findViewById(R.id.drawer);
+        navigationView = findViewById(R.id.navigation_eventos);
+        toolbar = findViewById(R.id.toolbarCreadorDeEventos);
+
+        setSupportActionBar(toolbar);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.app_name, R.string.app_name);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
 
         // Datos recolectados
         titulo = findViewById(R.id.editTextTextTitulo);
@@ -144,10 +167,42 @@ public class CreadorDeEventos extends AppCompatActivity {
     }
     void deleteEvento(){
         if (id==0){
-            Toast.makeText(this, "Primero debes de crear el evento para borrarlo", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Primero debes de crear el evento para borrarlo", Toast.LENGTH_SHORT).show();
         }else {
             new ModeloBBDD().deleteEventos(getApplicationContext(), id);
             finish();
         }
+    }
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        if(item.getItemId()==R.id.guardar_evento){
+            if (fechaG!=null && horaG!=null && titulo!=null && tipo!=null) {
+                saveEvento();
+            }else {
+                Toast.makeText(CreadorDeEventos.this, "No se olvide de rellenar todos los campos", Toast.LENGTH_SHORT).show();
+            }
+        }else if (item.getItemId()==R.id.borrar_evento){
+            deleteEvento();
+        } else if (item.getItemId()==R.id.cerrar_evento) {
+            Thread save = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Thread.currentThread().sleep(400);
+                    }catch (Exception e){
+                        throw new RuntimeException(e);
+                    }
+                    finish();
+                }
+            });
+            ProgressDialog progressDialog = new ProgressDialog(this);
+            progressDialog.setTitle("Saliendo del modo editor");
+            progressDialog.setCancelable(false);
+            progressDialog.setProgressStyle(0);
+            save.start();
+            progressDialog.show();
+        }
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 }

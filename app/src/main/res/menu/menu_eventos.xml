@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" >
+
+    <group android:checkableBehavior="none"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+        <item
+            android:id="@+id/guardar_evento"
+            android:icon="@drawable/content_save"
+            android:title="Guardar" />
+        <item
+            android:id="@+id/borrar_evento"
+            android:icon="@drawable/delete"
+            android:title="Borrar" />
+        <item android:title="">
+            <menu
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+                <item
+                    android:id="@+id/cerrar_evento"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:icon="@drawable/close_circle"
+                    android:title="Close" />
+            </menu>
+        </item>
+    </group>
+</menu>

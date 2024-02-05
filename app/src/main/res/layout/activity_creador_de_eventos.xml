@@ -25,7 +25,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbarCreadorDeNotas"
+                android:id="@+id/toolbarCreadorDeEventos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?attr/colorPrimary"
@@ -157,14 +157,14 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-<!--
+
     <com.google.android.material.navigation.NavigationView
-        android:id="@+id/navigation"
+        android:id="@+id/navigation_eventos"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/cabecera_menu"
-        app:menu="@menu/menu_notas" />-->
+        app:menu="@menu/menu_eventos" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

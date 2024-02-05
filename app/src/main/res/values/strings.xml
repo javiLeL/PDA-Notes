@@ -12,6 +12,9 @@
     <string name="terminos_y_condiciones">Acepta nuestros <b>terminos y condiciones</b></string>
     <string name="terminos_y_condiciones1">Revisa nuestras politicas <b> </b></string>
     <string name="terminos_y_condiciones2"><u>aqui</u></string>
+    <string name="espanol">Español</string>
+    <string name="ingles">English</string>
+    <string name="chino">中国</string>
     <string-array name="tipos_de_evento">
         <item>Boda</item>
         <item>Compra</item>
