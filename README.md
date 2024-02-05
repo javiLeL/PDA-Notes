@@ -55,7 +55,7 @@ Al se una app de caracter escolar presnta ciertos requisitos minimos los cuales 
         - [x] Debe ser la primera que se lanza al iniciar la aplicación.
         - [x] No vuelve a ejecutarse. Cuando termine el tiempo de espera (5 segundos) no se puede volver a ver esta ventana.
 - Ventana de Preferencias
-    - [ ] Contiene tres categorías de diferentes tipos: ListPreference, CheckBoxPreference y EditTextPreference.
+    - [x] Contiene tres categorías de diferentes tipos: ListPreference, CheckBoxPreference y EditTextPreference.
 - Notificaciones, DatePicker y TimePicker
     - [ ] Debe aparecer selector de hora y de día. Una vez el usuario haya seleccionado un valor concreto, se enviará una notificación como recordatorio.
     - [ ] Al seleccionar la notificación, se abrirá otra ventana en la que simplemente se visualizan los datos seleccionados por el usuario (no se pueden editar, sólo visualizar).
