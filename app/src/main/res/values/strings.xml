@@ -34,5 +34,16 @@
         <item>Ordenador</item>
         <item></item>
     </string-array>
-
+    <string-array name="fuentes">
+        <item>fuente 1</item>
+        <item>fuente 2</item>
+        <item>fuente 3</item>
+        <item>fuente 4</item>
+    </string-array>
+    <string-array name="fondos">
+        <item>fondo 1</item>
+        <item>fondo 2</item>
+        <item>fondo 3</item>
+        <item>fondo 4</item>
+    </string-array>
 </resources>

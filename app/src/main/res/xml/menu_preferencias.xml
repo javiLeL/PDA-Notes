@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="Apartado Notas">
+
+    </PreferenceCategory>
+    <CheckBoxPreference
+        android:defaultValue="false"
+        android:key="check_box_preference_1"
+        android:title="Usar Fondo Personalizado" />
+    <EditTextPreference
+        android:defaultValue=""
+        android:key="titulo_por_defecto"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="Titulo por defecto de la nota"
+        android:summary="Este titulo se pondra por defecto en todas las notas nuevas"/>
+    <ListPreference
+        android:key="list_preference_1"
+        android:title="Fuente"
+        android:entries="@array/fuentes"
+        android:entryValues="@array/fuentes"
+        android:defaultValue="fuente 1"
+        android:summary="Seleccione la fuente de su agrado"/>
+    <ListPreference
+        android:key="list_preference_2"
+        android:title="Fondo"
+        android:entries="@array/fondos"
+        android:entryValues="@array/fondos"
+        android:defaultValue="fondo 1"
+        android:summary="Seleccione el fondo que mas le guste"/>
+</PreferenceScreen>

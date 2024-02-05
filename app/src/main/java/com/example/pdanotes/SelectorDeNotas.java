@@ -79,6 +79,8 @@ public class SelectorDeNotas extends AppCompatActivity implements  NavigationVie
             intent.putExtra("pass", pass);
             startActivity(intent);
             finish();
+        } else if (item.getItemId()==R.id.apartado_de_ajustes) {
+            startActivity(new Intent(this, Ajustes.class));
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;

@@ -15,7 +15,7 @@
             android:icon="@drawable/calendar_month"
             android:title="Eventos" />
         <item
-            android:id="@+id/apartado_de_"
+            android:id="@+id/apartado_de_ajustes"
             android:icon="@drawable/cog"
             android:title="Ajustes" />
         <item android:title="">
