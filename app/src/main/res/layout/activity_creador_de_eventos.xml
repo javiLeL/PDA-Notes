@@ -67,7 +67,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:layout_margin="10sp"
-                    android:layout_weight="0"
+                    android:layout_weight="1"
                     android:ems="10"
                     android:enabled="false"
                     android:hint="Fecha"
@@ -79,8 +79,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginRight="10sp"
-                    android:layout_weight="1"
-                    android:backgroundTint="#507676FF"
+                    android:layout_weight="11"
+                    android:backgroundTint="#A07676FF"
                     android:src="@drawable/calendar_month" />
 
             </LinearLayout>
@@ -95,7 +95,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:layout_margin="10sp"
-                    android:layout_weight="0"
+                    android:layout_weight="1"
                     android:ems="10"
                     android:enabled="false"
                     android:hint="Hora"
@@ -107,8 +107,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginRight="10sp"
-                    android:layout_weight="1"
-                    android:backgroundTint="#507676FF"
+                    android:layout_weight="11"
+                    android:backgroundTint="#A07676FF"
                     android:src="@drawable/clock" />
 
             </LinearLayout>
