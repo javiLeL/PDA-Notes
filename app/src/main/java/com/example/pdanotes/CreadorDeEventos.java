@@ -9,6 +9,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AnimationUtils;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
@@ -20,10 +22,11 @@ import java.util.Calendar;
 
 public class CreadorDeEventos extends AppCompatActivity {
     Integer id;
-    EditText titulo, tipo, fecha, hora;
+    EditText titulo,  fecha, hora;
     String titulor, tipor, fechar, horar, correo, pass;
     LocalTime horaG;
     LocalDate fechaG;
+    AutoCompleteTextView tipo;
     final Calendar calendar = Calendar.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,8 @@ public class CreadorDeEventos extends AppCompatActivity {
         fecha = findViewById(R.id.editTextTextFecha);
         hora = findViewById(R.id.editTextTextHora);
 
+        // Pasando los datos al autocomplete view
+        tipo.setAdapter(ArrayAdapter.createFromResource(this, R.array.tipos_de_evento, android.R.layout.simple_spinner_item));
         // Poniendo los datos
         if(id!=0) {
             titulo.setText(titulor);

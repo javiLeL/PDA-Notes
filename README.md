@@ -15,11 +15,16 @@ Al se una app de caracter escolar presnta ciertos requisitos minimos los cuales 
 
 - Elementos obligatorios
     - [x] La aplicación debe contener mínimo 4 Layouts, de los cuales al menos dos, no pueden ser tipo ConstraintLayout.
-    - [ ] Deben aparecer campos de texto variados (todos): Plain Text, AutocompleteTextView, Spinner, MultiAutocompleteTextView, Texto Multilinea.
+    - [ ] Deben aparecer campos de texto variados (todos): 
+        - [x] Plain Text
+        - [x] AutocompleteTextView
+        - [ ] Spinner
+        - [ ] MultiAutocompleteTextView
+        - [x] Texto Multilinea
     - [ ] Deben aparecer diferentes tipos de botones (*al menos cuatro de los indicados*): 
         - [ ] **ToggleButton**
         - [ ] **RadioButton**
-        - [ ] **CheckBox**
+        - [x] **CheckBox**
         - [ ] **Switch**
         - [x] **ImagenButton**
         - [x] **Button**

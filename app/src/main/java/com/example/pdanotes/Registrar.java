@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.view.animation.AnimationUtils;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -16,7 +17,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Registrar extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +28,7 @@ public class Registrar extends AppCompatActivity {
                 String nombre =((EditText) findViewById(R.id.editTextNombreRegistrar)).getText().toString().trim();
                 String correo =((EditText) findViewById(R.id.editTextCorreoElectronicoRegistrar)).getText().toString().trim();
                 String password =((EditText) findViewById(R.id.editTextPasswordRegistrar)).getText().toString();
+                CheckBox checkBox = findViewById(R.id.checkBoxTerminosYCondiciones);
 
                 if (!nombre.isEmpty() && !correo.isEmpty() && !password.isEmpty()){
                     if (isCorreo(correo)){
@@ -56,6 +57,9 @@ public class Registrar extends AppCompatActivity {
                         snackbar.setActionTextColor(Color.RED);
                         snackbar.show();
                         v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.error_btn));
+                    } else if(!checkBox.isChecked()) {
+                        v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.error_btn));
+                        Snackbar.make(v, "Asegurese de Aceptar nuestros terminos y condiciones", Snackbar.LENGTH_LONG).show();
                     } else {
                         boolean isCreado = new ModeloBBDD().insertarUsuario(getApplicationContext(), new Usuario(correo, nombre, password));
                         if(!isCreado){
