@@ -5,25 +5,35 @@ import java.time.LocalTime;
 
 public class Evento {
     private Integer id;
-    private String titulo, tipo, correo;
+    private String titulo, tipo, descripcion, correo;
     private  LocalDate fecha;
     private LocalTime hora;
 
-    public Evento(String titulo, String tipo, LocalDate fecha, LocalTime hora, String correo) {
+    public Evento(String titulo, String tipo, LocalDate fecha, LocalTime hora, String descripcion, String correo) {
         this.titulo = titulo;
         this.tipo = tipo;
         this.fecha = fecha;
         this.hora = hora;
+        this.descripcion = descripcion;
         this.correo = correo;
     }
 
-    public Evento(Integer id, String titulo, String tipo, LocalDate fecha, LocalTime hora, String correo) {
+    public Evento(Integer id, String titulo, String tipo, LocalDate fecha, LocalTime hora, String descripcion, String correo) {
         this.id = id;
         this.titulo = titulo;
         this.tipo = tipo;
         this.correo = correo;
         this.fecha = fecha;
         this.hora = hora;
+        this.descripcion = descripcion;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public Integer getId() {

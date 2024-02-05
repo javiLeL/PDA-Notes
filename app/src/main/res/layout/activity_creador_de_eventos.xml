@@ -113,6 +113,16 @@
 
             </LinearLayout>
 
+            <MultiAutoCompleteTextView
+                android:id="@+id/editTextTextMultiLineDescripcion"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10sp"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="Descripcion"
+                android:inputType="textMultiLine" />
+
         </LinearLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton

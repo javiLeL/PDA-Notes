@@ -33,7 +33,7 @@ public class ModeloBBDD {
         }
     }
     void updateEvento(Context context, Evento dato){
-        String sentencia = "UPDATE eventos SET titulo='"+dato.getTitulo()+"', tipo='"+dato.getTipo()+"', fecha='"+dato.getFecha().toString()+"', hora='"+dato.getHora().toString()+"' WHERE id="+dato.getId();
+        String sentencia = "UPDATE eventos SET titulo='"+dato.getTitulo()+"', tipo='"+dato.getTipo()+"', fecha='"+dato.getFecha().toString()+"', hora='"+dato.getHora().toString()+"', descripcion='"+dato.getDescripcion()+"' WHERE id="+dato.getId();
         SQLiteDatabase sqLiteDatabase = this.getCon(context);
         try{
             sqLiteDatabase.execSQL(sentencia);
@@ -43,7 +43,7 @@ public class ModeloBBDD {
     List<Evento> selectEventos(Context context, String correo, String pass){
         List<Evento> resultado = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = this.getCon(context);
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT id, titulo, tipo, fecha, hora FROM eventos WHERE correo=?", new String[]{correo});
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT id, titulo, tipo, fecha, hora, descripcion FROM eventos WHERE correo=?", new String[]{correo});
         if(cursor.moveToFirst()){
             do{
                 Integer id = cursor.getInt(0);
@@ -51,11 +51,12 @@ public class ModeloBBDD {
                 String tipo = cursor.getString(2);
                 String fechaG = cursor.getString(3);
                 String horaG = cursor.getString(4);
+                String descripcion = cursor.getString(5);
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     LocalDate fecha = LocalDate.of(Integer.parseInt(fechaG.split("-")[0]),  Integer.parseInt(fechaG.split("-")[1]), Integer.parseInt(fechaG.split("-")[2]));
                     LocalTime hora = LocalTime.of(Integer.parseInt(horaG.split(":")[0]), Integer.parseInt(horaG.split(":")[1]));
-                    resultado.add(new Evento(id, titulo, tipo, fecha, hora, correo));
+                    resultado.add(new Evento(id, titulo, tipo, fecha, hora, descripcion, correo));
                 }
             }while (cursor.moveToNext());
         }
@@ -64,7 +65,7 @@ public class ModeloBBDD {
     }
     boolean insertarEvento(Context context, Evento datos){
         boolean resultado;
-        String sentencia = "INSERT INTO eventos(titulo, tipo, fecha, hora, correo) VALUES('"+datos.getTitulo()+"', '"+datos.getTipo()+"', '"+datos.getFecha().toString()+"', '"+datos.getHora().toString()+"', '"+datos.getCorreo()+"')";
+        String sentencia = "INSERT INTO eventos(titulo, tipo, fecha, hora, descripcion, correo) VALUES('"+datos.getTitulo()+"', '"+datos.getTipo()+"', '"+datos.getFecha().toString()+"', '"+datos.getHora().toString()+"', '"+datos.getDescripcion()+"', '"+datos.getCorreo()+"')";
         SQLiteDatabase sqLiteDatabase = this.getCon(context);
         try{
             sqLiteDatabase.execSQL(sentencia);

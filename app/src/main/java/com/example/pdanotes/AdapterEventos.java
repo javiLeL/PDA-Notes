@@ -68,6 +68,7 @@ public class AdapterEventos extends RecyclerView.Adapter<AdapterEventos.AnimeVie
                     intent.putExtra("tipo", event.getTipo());
                     intent.putExtra("fecha", event.getFecha().toString());
                     intent.putExtra("hora", event.getHora().toString());
+                    intent.putExtra("descripcion", event.getDescripcion());
                     intent.putExtra("correo", event.getCorreo());
                     intent.putExtra("pass", pass);
 

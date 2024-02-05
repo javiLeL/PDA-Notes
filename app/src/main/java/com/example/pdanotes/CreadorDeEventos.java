@@ -18,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.MultiAutoCompleteTextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -30,13 +31,14 @@ import java.util.Calendar;
 public class CreadorDeEventos extends AppCompatActivity implements  NavigationView.OnNavigationItemSelectedListener{
     Integer id;
     EditText titulo,  fecha, hora;
-    String titulor, tipor, fechar, horar, correo, pass;
+    String titulor, tipor, fechar, horar, descripcionr, correo, pass;
     LocalTime horaG;
     LocalDate fechaG;
     AutoCompleteTextView tipo;
     DrawerLayout drawer;
     NavigationView navigationView;
     Toolbar toolbar;
+    MultiAutoCompleteTextView descripcion;
     final Calendar calendar = Calendar.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,7 @@ public class CreadorDeEventos extends AppCompatActivity implements  NavigationVi
         tipor = getIntent().getExtras().getString("tipo");
         fechar = getIntent().getExtras().getString("fecha");
         horar = getIntent().getExtras().getString("hora");
+        descripcionr = getIntent().getExtras().getString("descripcion");
 
         correo = getIntent().getExtras().getString("correo");
         pass = getIntent().getExtras().getString("pass");
@@ -70,6 +73,7 @@ public class CreadorDeEventos extends AppCompatActivity implements  NavigationVi
         tipo = findViewById(R.id.editTextTextTipo);
         fecha = findViewById(R.id.editTextTextFecha);
         hora = findViewById(R.id.editTextTextHora);
+        descripcion = findViewById(R.id.editTextTextMultiLineDescripcion);
 
         // Pasando los datos al autocomplete view
         tipo.setAdapter(ArrayAdapter.createFromResource(this, R.array.tipos_de_evento, android.R.layout.simple_spinner_item));
@@ -79,6 +83,7 @@ public class CreadorDeEventos extends AppCompatActivity implements  NavigationVi
             tipo.setText(tipor);
             fecha.setText(fechar);
             hora.setText(horar);
+            descripcion.setText(descripcionr);
 
             calendar.set(Integer.parseInt(fechar.split("-")[0]), Integer.parseInt(fechar.split("-")[1]), Integer.parseInt(fechar.split("-")[2]), Integer.parseInt(horar.split(":")[0]), Integer.parseInt(horar.split(":")[1]));
 
@@ -106,7 +111,6 @@ public class CreadorDeEventos extends AppCompatActivity implements  NavigationVi
                 }
             }
         });
-
         findViewById(R.id.imageButtonSelecionarHora).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,7 +137,6 @@ public class CreadorDeEventos extends AppCompatActivity implements  NavigationVi
                 }
             }
         });
-
         findViewById(R.id.floatingActionButtonBorrarEvento).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -147,13 +150,13 @@ public class CreadorDeEventos extends AppCompatActivity implements  NavigationVi
             @Override
             public void run() {
                 if (id==0) {
-                    boolean isInsertado = new ModeloBBDD().insertarEvento(getApplicationContext(), new Evento(titulo.getText().toString(), tipo.getText().toString(), fechaG, horaG, correo));
+                    boolean isInsertado = new ModeloBBDD().insertarEvento(getApplicationContext(), new Evento(titulo.getText().toString(), tipo.getText().toString(), fechaG, horaG, descripcion.getText().toString(), correo));
                     if (isInsertado) {
                         // Toast.makeText(CreadorDeEventos.this, "guardado", Toast.LENGTH_SHORT).show();
                         finish();
                     }
                 }else {
-                    new ModeloBBDD().updateEvento(getApplicationContext(), new Evento(id, titulo.getText().toString(), tipo.getText().toString(), fechaG, horaG, correo));
+                    new ModeloBBDD().updateEvento(getApplicationContext(), new Evento(id, titulo.getText().toString(), tipo.getText().toString(), fechaG, horaG, descripcion.getText().toString(), correo));
                     finish();
                 }
             }
