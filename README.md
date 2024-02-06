@@ -35,7 +35,7 @@ Al se una app de caracter escolar presnta ciertos requisitos minimos los cuales 
         - [x] **progressBar Lineal**.
     - [x] Deben aparecer **imágenes** que se deben almacenar en su carpeta de recursos
     correspondiente.
-    - [ ] Las **fuentes de texto deben de ser variadas** y se deben **almacenar en la carpeta de recursos correspondiente**.
+    - [x] Las **fuentes de texto deben de ser variadas** y se deben **almacenar en la carpeta de recursos correspondiente**.
 - Ventana de acceso/registro:
     - [x] Los fondos de los Layouts deben ser todos **personalizados** con cualquiera de las opciones vistas en clase.
     - [x] Debe aparecer **al menos una animación (***Lottie***)** que se debe de almacenar en su carpeta correspondiente.

@@ -7,4 +7,12 @@
     <color name="transparent">#00000000</color>
     <color name="colorPrimary">#A05640B2</color>
     <color name="colorPrimaryDark">#A08787FF</color>
+    <color name="rojo">#70FF0000</color>
+    <color name="naranja">#70FF8000</color>
+    <color name="amarillo">#70FFFF00</color>
+    <color name="verde">#7000FF00</color>
+    <color name="cyan">#7000FFFF</color>
+    <color name="azul">#704040FF</color>
+    <color name="magenta">#70FF00FF</color>
+    <color name="morado">#708000FF</color>
 </resources>

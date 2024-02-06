@@ -9,7 +9,7 @@
     </PreferenceCategory>
     <CheckBoxPreference
         android:defaultValue="false"
-        android:key="check_box_preference_1"
+        android:key="check_box_preference_fondo_personalizado"
         android:title="Usar Fondo Personalizado" />
     <EditTextPreference
         android:defaultValue=""
@@ -19,17 +19,17 @@
         android:title="Titulo por defecto de la nota"
         android:summary="Este titulo se pondra por defecto en todas las notas nuevas"/>
     <ListPreference
-        android:key="list_preference_1"
+        android:key="list_preference_fuente"
         android:title="Fuente"
         android:entries="@array/fuentes"
         android:entryValues="@array/fuentes"
-        android:defaultValue="fuente 1"
+        android:defaultValue="Del sistema"
         android:summary="Seleccione la fuente de su agrado"/>
     <ListPreference
-        android:key="list_preference_2"
+        android:key="list_preference_fondo"
         android:title="Fondo"
         android:entries="@array/fondos"
         android:entryValues="@array/fondos"
-        android:defaultValue="fondo 1"
+        android:defaultValue="Morado"
         android:summary="Seleccione el fondo que mas le guste"/>
 </PreferenceScreen>

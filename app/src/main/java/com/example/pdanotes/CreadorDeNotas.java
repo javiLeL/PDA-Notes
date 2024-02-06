@@ -3,12 +3,17 @@ package com.example.pdanotes;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
@@ -24,7 +29,6 @@ public class CreadorDeNotas extends AppCompatActivity implements  NavigationView
     NavigationView navigationView;
     FloatingActionButton botonGuardar, botonBorrar;
     Toolbar toolbar;
-
     EditText titulo, nota;
     String titulor, notar, correo, pass;
     Integer id;
@@ -38,7 +42,6 @@ public class CreadorDeNotas extends AppCompatActivity implements  NavigationView
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         // Creando el menu
-
         drawer = findViewById(R.id.drawer);
         navigationView = findViewById(R.id.navigation);
         toolbar = findViewById(R.id.toolbarCreadorDeNotas);
@@ -51,7 +54,6 @@ public class CreadorDeNotas extends AppCompatActivity implements  NavigationView
         toggle.syncState();
 
         // Recogiendo informacion que se le pasa
-
         botonGuardar = findViewById(R.id.floatingActionButtonGuardarNota);
         botonBorrar = findViewById(R.id.floatingActionButtonBorrarNota);
 
@@ -120,6 +122,7 @@ public class CreadorDeNotas extends AppCompatActivity implements  NavigationView
                 deleteNote();
             }
         });
+        leerConfiguracion();
     }
     void saveNote(){
         Thread save = new Thread(new Runnable() {
@@ -180,5 +183,59 @@ public class CreadorDeNotas extends AppCompatActivity implements  NavigationView
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        leerConfiguracion();
+    }
+
+    private void leerConfiguracion(){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean isPersonalizado = preferences.getBoolean("check_box_preference_fondo_personalizado", false);
+        String tituloDefault = preferences.getString("titulo_por_defecto", "");
+        String fuente = preferences.getString("list_preference_fuente", "Del sistema");
+        String fondo = preferences.getString("list_preference_fondo", "Por Defecto");
+
+        if (isPersonalizado){
+            if(fondo.equals("Rojo")){
+                drawer.setBackgroundColor(getResources().getColor(R.color.rojo));
+            } else if (fondo.equals("Naranja")) {
+                drawer.setBackgroundColor(getResources().getColor(R.color.naranja));
+            } else if (fondo.equals("Amarillo")) {
+                drawer.setBackgroundColor(getResources().getColor(R.color.amarillo));
+            } else if (fondo.equals("Verde")) {
+                drawer.setBackgroundColor(getResources().getColor(R.color.verde));
+            } else if (fondo.equals("Cyan")) {
+                drawer.setBackgroundColor(getResources().getColor(R.color.cyan));
+            } else if (fondo.equals("Azul")) {
+                drawer.setBackgroundColor(getResources().getColor(R.color.azul));
+            } else if (fondo.equals("Magenta")) {
+                drawer.setBackgroundColor(getResources().getColor(R.color.magenta));
+            } else if (fondo.equals("Morado")) {
+                drawer.setBackgroundColor(getResources().getColor(R.color.morado));
+            }
+        }
+        if (fuente.equals("Minecraft")){
+            Typeface typeface = ResourcesCompat.getFont(this, R.font.minecraft);
+            titulo.setTypeface(typeface);
+            nota.setTypeface(typeface);
+        } else if (fuente.equals("dDenut")) {
+            Typeface typeface = ResourcesCompat.getFont(this, R.font.d_denyut);
+            titulo.setTypeface(typeface);
+            nota.setTypeface(typeface);
+        } else if (fuente.equals("Love Craft")) {
+            Typeface typeface = ResourcesCompat.getFont(this, R.font.love_craft);
+            titulo.setTypeface(typeface);
+            nota.setTypeface(typeface);
+        } else if (fuente.equals("Old London")) {
+            Typeface typeface = ResourcesCompat.getFont(this, R.font.olondon);
+            titulo.setTypeface(typeface);
+            nota.setTypeface(typeface);
+        }
+        if (id==0) {
+            titulo.setText(tituloDefault);
+        }
     }
 }

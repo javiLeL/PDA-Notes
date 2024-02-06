@@ -6,4 +6,5 @@
     </style>
     <color name="start_degradado">#FFFF00</color>
     <color name="end_degradado">#000000</color>
+    <string name="tema">dark</string>
 </resources>

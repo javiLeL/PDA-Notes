@@ -35,15 +35,20 @@
         <item></item>
     </string-array>
     <string-array name="fuentes">
+        <item>Del sistema</item>
         <item>dDenut</item>
         <item>Love Craft</item>
         <item>Minecraft</item>
         <item>Old London</item>
     </string-array>
     <string-array name="fondos">
-        <item>fondo 1</item>
-        <item>fondo 2</item>
-        <item>fondo 3</item>
-        <item>fondo 4</item>
+        <item>Rojo</item>
+        <item>Naranja</item>
+        <item>Amarillo</item>
+        <item>Verde</item>
+        <item>Cyan</item>
+        <item>Azul</item>
+        <item>Magenta</item>
+        <item>Morado</item>
     </string-array>
 </resources>
