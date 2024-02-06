@@ -1,6 +1,9 @@
 package com.example.pdanotes;
 
+import android.os.Build;
+
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class Evento {
@@ -82,5 +85,11 @@ public class Evento {
 
     public void setHora(LocalTime hora) {
         this.hora = hora;
+    }
+    public LocalDateTime getFechaYHora(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            return LocalDateTime.of(fecha, hora);
+        }
+        return null;
     }
 }

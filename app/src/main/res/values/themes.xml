@@ -8,5 +8,6 @@
     <style name="Theme.PDANotes" parent="Base.Theme.PDANotes" />
     <color name="start_degradado">#FFFF00</color>
     <color name="end_degradado">#FFFFFF</color>
+    <color name="primario">#000000</color>
     <string name="tema">light</string>
 </resources>

@@ -3,14 +3,24 @@ package com.example.pdanotes;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
+import android.app.TaskStackBuilder;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -29,11 +39,12 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 
-public class CreadorDeEventos extends AppCompatActivity implements  NavigationView.OnNavigationItemSelectedListener{
+public class CreadorDeEventos extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     Integer id;
-    EditText titulo,  fecha, hora;
+    EditText titulo, fecha, hora;
     String titulor, tipor, fechar, horar, descripcionr, correo, pass;
     LocalTime horaG;
     LocalDate fechaG;
@@ -42,7 +53,9 @@ public class CreadorDeEventos extends AppCompatActivity implements  NavigationVi
     NavigationView navigationView;
     Toolbar toolbar;
     MultiAutoCompleteTextView descripcion;
+    PendingIntent pendingIntent;
     final Calendar calendar = Calendar.getInstance();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,7 +99,7 @@ public class CreadorDeEventos extends AppCompatActivity implements  NavigationVi
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 String isThisTipo = tipo.getText().toString().trim();
-                if (isThisTipo.equals("Compra")){
+                if (isThisTipo.equals("Compra")) {
                     descripcion.setAdapter(ArrayAdapter.createFromResource(CreadorDeEventos.this, R.array.compras, android.R.layout.simple_list_item_1));
                 }
             }
@@ -94,7 +107,7 @@ public class CreadorDeEventos extends AppCompatActivity implements  NavigationVi
         // descripcion.setAdapter(ArrayAdapter.createFromResource(getApplicationContext(), R.array.compras, android.R.layout.simple_dropdown_item_1line));
         descripcion.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
         // Poniendo los datos
-        if(id!=0) {
+        if (id != 0) {
             titulo.setText(titulor);
             tipo.setText(tipor);
             fecha.setText(fechar);
@@ -120,9 +133,9 @@ public class CreadorDeEventos extends AppCompatActivity implements  NavigationVi
                             fecha.setText(fechaG.toString());
                         }
                     }
-                }, calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH)+1, calendar.get(Calendar.DAY_OF_MONTH));
+                }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.DAY_OF_MONTH));
 
-                if (alertDatePickerDialog!=null) {
+                if (alertDatePickerDialog != null) {
                     alertDatePickerDialog.show();
                 }
             }
@@ -145,9 +158,9 @@ public class CreadorDeEventos extends AppCompatActivity implements  NavigationVi
         findViewById(R.id.floatingActionButtonGuardarEvento).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (fechaG!=null && horaG!=null && titulo!=null && tipo!=null) {
+                if (fechaG != null && horaG != null && titulo != null && tipo != null) {
                     saveEvento();
-                }else {
+                } else {
                     Toast.makeText(CreadorDeEventos.this, "No se olvide de rellenar todos los campos", Toast.LENGTH_SHORT).show();
                     v.startAnimation(AnimationUtils.loadAnimation(CreadorDeEventos.this, R.anim.error_btn));
                 }
@@ -161,18 +174,26 @@ public class CreadorDeEventos extends AppCompatActivity implements  NavigationVi
         });
     }
 
-    void saveEvento(){
+    void saveEvento() {
         Thread save = new Thread(new Runnable() {
             @Override
             public void run() {
-                if (id==0) {
-                    boolean isInsertado = new ModeloBBDD().insertarEvento(getApplicationContext(), new Evento(titulo.getText().toString(), tipo.getText().toString(), fechaG, horaG, descripcion.getText().toString(), correo));
+                if (id == 0) {
+                    Evento evento = new Evento(titulo.getText().toString(), tipo.getText().toString(), fechaG, horaG, descripcion.getText().toString(), correo);
+                    boolean isInsertado = new ModeloBBDD().insertarEvento(getApplicationContext(), evento);
                     if (isInsertado) {
+                        clickNotificacion(evento);
+                        crearCanal();
+                        lanzarNotificacion(evento);
                         // Toast.makeText(CreadorDeEventos.this, "guardado", Toast.LENGTH_SHORT).show();
                         finish();
                     }
-                }else {
-                    new ModeloBBDD().updateEvento(getApplicationContext(), new Evento(id, titulo.getText().toString(), tipo.getText().toString(), fechaG, horaG, descripcion.getText().toString(), correo));
+                } else {
+                    Evento evento = new Evento(id, titulo.getText().toString(), tipo.getText().toString(), fechaG, horaG, descripcion.getText().toString(), correo);
+                    new ModeloBBDD().updateEvento(getApplicationContext(), evento);
+                    clickNotificacion(evento);
+                    crearCanal();
+                    lanzarNotificacion(evento);
                     finish();
                 }
             }
@@ -184,31 +205,33 @@ public class CreadorDeEventos extends AppCompatActivity implements  NavigationVi
         save.start();
         progressDialog.show();
     }
-    void deleteEvento(){
-        if (id==0){
+
+    void deleteEvento() {
+        if (id == 0) {
             Toast.makeText(getApplicationContext(), "Primero debes de crear el evento para borrarlo", Toast.LENGTH_SHORT).show();
-        }else {
+        } else {
             new ModeloBBDD().deleteEventos(getApplicationContext(), id);
             finish();
         }
     }
+
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        if(item.getItemId()==R.id.guardar_evento){
-            if (fechaG!=null && horaG!=null && titulo!=null && tipo!=null) {
+        if (item.getItemId() == R.id.guardar_evento) {
+            if (fechaG != null && horaG != null && titulo != null && tipo != null) {
                 saveEvento();
-            }else {
+            } else {
                 Toast.makeText(CreadorDeEventos.this, "No se olvide de rellenar todos los campos", Toast.LENGTH_SHORT).show();
             }
-        }else if (item.getItemId()==R.id.borrar_evento){
+        } else if (item.getItemId() == R.id.borrar_evento) {
             deleteEvento();
-        } else if (item.getItemId()==R.id.cerrar_evento) {
+        } else if (item.getItemId() == R.id.cerrar_evento) {
             Thread save = new Thread(new Runnable() {
                 @Override
                 public void run() {
                     try {
                         Thread.currentThread().sleep(400);
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
                     finish();
@@ -223,5 +246,55 @@ public class CreadorDeEventos extends AppCompatActivity implements  NavigationVi
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    /**
+     * Metodo que crea el canal donde se lanzara la notificacion
+     */
+    void crearCanal() {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel("0", "canal fecha y hora", NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager constructor = getSystemService(NotificationManager.class);
+            constructor.createNotificationChannel(channel);
+        }
+    }
+
+    /**
+     * metodo usado para lanzar la notificacion en el canal creado con anterioridad
+     */
+    void lanzarNotificacion(Evento evento) {
+
+        NotificationCompat.Builder constructor = new NotificationCompat.Builder(getApplicationContext(), "0");
+        constructor.setSmallIcon(R.drawable.calendar_month);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            constructor.setContentText(evento.getFechaYHora().format(DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm")));
+        };
+        constructor.setSubText(evento.getTitulo());
+        constructor.setPriority(NotificationCompat.PRIORITY_DEFAULT);
+        constructor.setContentIntent(pendingIntent);
+        NotificationManagerCompat noti = NotificationManagerCompat.from(getApplicationContext());
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        noti.notify(0, constructor.build());
+    }
+    void clickNotificacion(Evento evento){
+        Intent intent = new Intent(this, NotificacionActivity.class);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            intent.putExtra("fecha", evento.getFechaYHora().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+            intent.putExtra("hora", evento.getFechaYHora().format(DateTimeFormatter.ofPattern("HH:mm")));
+        };
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+        stackBuilder.addParentStack(NotificacionActivity.class);
+        stackBuilder.addNextIntent(intent);
+        pendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
     }
 }

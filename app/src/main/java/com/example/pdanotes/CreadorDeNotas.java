@@ -64,10 +64,8 @@ public class CreadorDeNotas extends AppCompatActivity implements  NavigationView
 
         botonGuardar.startAnimation(cerrar);
         botonBorrar.startAnimation(cerrar);
-        botonGuardar.setEnabled(!isAbierto);
-        botonBorrar.setEnabled(!isAbierto);
-        botonGuardar.setClickable(!isAbierto);
-        botonBorrar.setClickable(!isAbierto);
+        botonGuardar.setEnabled(false);
+        botonBorrar.setEnabled(false);
         // findViewById(R.id.floatingActionButtonMenuNotas).startAnimation(derecha);
 
         id = getIntent().getExtras().getInt("id");
@@ -122,6 +120,8 @@ public class CreadorDeNotas extends AppCompatActivity implements  NavigationView
                 deleteNote();
             }
         });
+        botonGuardar.setClickable(false);
+        botonBorrar.setClickable(false);
         leerConfiguracion();
     }
     void saveNote(){
