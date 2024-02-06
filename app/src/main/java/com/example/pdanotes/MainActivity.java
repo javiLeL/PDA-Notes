@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
                 correo = findViewById(R.id.editTextCorreoElectronicoRegistrar);
                 password = findViewById(R.id.editTextPasswordRegistrar);
                 if (!correo.getText().toString().trim().isEmpty() && !password.getText().toString().isEmpty()){
-                    String[] usuario =  new ModeloBBDD().selectUsuario(getApplicationContext(), correo.getText().toString().trim());
+                    String[] usuario =  new ModeloBBDD().selectUsuario(getApplicationContext(), correo.getText().toString().trim().toLowerCase());
                     String nombre = usuario[0];
                     String passwdbbdd = usuario[1];
 

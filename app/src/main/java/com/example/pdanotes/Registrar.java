@@ -36,7 +36,7 @@ public class Registrar extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String nombre =((EditText) findViewById(R.id.editTextNombreRegistrar)).getText().toString().trim();
-                String correo =((EditText) findViewById(R.id.editTextCorreoElectronicoRegistrar)).getText().toString().trim();
+                String correo =((EditText) findViewById(R.id.editTextCorreoElectronicoRegistrar)).getText().toString().trim().toLowerCase();
                 String password =((EditText) findViewById(R.id.editTextPasswordRegistrar)).getText().toString();
                 CheckBox checkBox = findViewById(R.id.checkBoxTerminosYCondiciones);
 
