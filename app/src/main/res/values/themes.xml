@@ -6,4 +6,6 @@
     </style>
 
     <style name="Theme.PDANotes" parent="Base.Theme.PDANotes" />
+    <color name="start_degradado">#FFFF00</color>
+    <color name="end_degradado">#FFFFFF</color>
 </resources>

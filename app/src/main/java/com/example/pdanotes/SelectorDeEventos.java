@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -33,6 +34,9 @@ public class SelectorDeEventos extends AppCompatActivity implements  NavigationV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selector_de_eventos);
+
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         drawer = findViewById(R.id.drawer_principal);
         navigationView = findViewById(R.id.navigation_principal);
         toolbar = findViewById(R.id.toolbar);
@@ -82,6 +86,8 @@ public class SelectorDeEventos extends AppCompatActivity implements  NavigationV
             intent.putExtra("pass", pass);
             startActivity(intent);
             finish();
+        }else if (item.getItemId()==R.id.apartado_de_ajustes) {
+            startActivity(new Intent(this, Ajustes.class));
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
