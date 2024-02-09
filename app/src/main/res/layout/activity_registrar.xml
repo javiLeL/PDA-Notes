@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:layout_gravity="center"
-        android:layout_marginTop="15dp"
         android:orientation="horizontal">
 
         <ImageView
@@ -45,7 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="10dp"
         android:gravity="center"
         android:text="@string/tituloRegistrar"
         android:textSize="20sp" />
@@ -56,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginLeft="20sp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="20sp"
         app:startIconDrawable="@drawable/baseline_account_circle_24_light_mode">
 
@@ -74,7 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         app:startIconDrawable="@drawable/ic_email_24">
 
@@ -92,7 +91,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginLeft="20sp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="20sp"
         app:endIconMode="password_toggle"
         app:startIconDrawable="@drawable/baseline_lock_person_24">
@@ -104,12 +103,36 @@
             android:hint="@string/hint_password"
             android:inputType="textPassword" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"></LinearLayout>
-
     </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20sp"
+        android:orientation="horizontal">
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20sp"
+            android:layout_weight="2" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="208dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20sp"
+            android:layout_weight="1">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextTelefonoRegistrar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="telefono"
+                android:inputType="phone" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
 
     <CheckBox
         android:id="@+id/checkBoxTerminosYCondiciones"

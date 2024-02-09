@@ -13,9 +13,11 @@ import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AnimationUtils;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -25,6 +27,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Registrar extends AppCompatActivity {
+    private final String[] PREFIJOS = new String[]{"+1", "+52", "+55", "+54", "+57", "+56", "+58", "+51", "+593", "+53", "+591", "+506", "+507", "+598", "+34", "+49", "+33", "+39", "+44", "+7", "+380", "+48", "+40", "+31", "+32", "+30", "+351", "+46", "+47", "+86", "+91", "+81", "+82", "+62", "+90", "+63", "+66", "+84", "+972", "+60", "+65", "+92", "+880", "+966", "+20", "+27", "+234", "+254", "+212", "+213", "+256", "+233", "+237", "+225", "+221", "+255", "+249", "+218", "+216", "+61", "+64", "+679", "+675", "+676", "+98", "+964", "+962", "+961", "+965", "+971", "+968", "+974", "+973", "+967"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,11 +35,15 @@ public class Registrar extends AppCompatActivity {
 
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        Spinner spinner = findViewById(R.id.spinner);
+        spinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_selectable_list_item, PREFIJOS));
+        spinner.setSelection(14);
         findViewById(R.id.buttonRegistrar).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String nombre =((EditText) findViewById(R.id.editTextNombreRegistrar)).getText().toString().trim();
                 String correo =((EditText) findViewById(R.id.editTextCorreoElectronicoRegistrar)).getText().toString().trim().toLowerCase();
+                String telefono =((EditText) findViewById(R.id.editTextTelefonoRegistrar)).getText().toString().trim().toLowerCase();
                 String password =((EditText) findViewById(R.id.editTextPasswordRegistrar)).getText().toString();
                 CheckBox checkBox = findViewById(R.id.checkBoxTerminosYCondiciones);
 
@@ -70,8 +77,11 @@ public class Registrar extends AppCompatActivity {
                     } else if(!checkBox.isChecked()) {
                         v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.error_btn));
                         Snackbar.make(v, "Asegurese de Aceptar nuestros terminos y condiciones", Snackbar.LENGTH_LONG).show();
+                    } else if (isTelefono(telefono)){
+                        v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.error_btn));
+                        Snackbar.make(v, "Asegurese de poner un telefono real", Snackbar.LENGTH_LONG).show();
                     } else {
-                        boolean isCreado = new ModeloBBDD().insertarUsuario(getApplicationContext(), new Usuario(correo, nombre, password));
+                        boolean isCreado = new ModeloBBDD().insertarUsuario(getApplicationContext(), new Usuario(correo, nombre,spinner.getSelectedItem().toString()+telefono, password));
                         if(!isCreado){
                             v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.error_btn));
                             Toast.makeText(Registrar.this, "Error al crear el registro", Toast.LENGTH_SHORT).show();
@@ -116,6 +126,11 @@ public class Registrar extends AppCompatActivity {
     boolean isCorreo(String correo){
         Pattern pattern = Patterns.EMAIL_ADDRESS;
         Matcher matcher = pattern.matcher(correo);
+        return !matcher.matches();
+    }
+    boolean isTelefono(String telefono){
+        Pattern pattern = Patterns.PHONE;
+        Matcher matcher = pattern.matcher(telefono);
         return !matcher.matches();
     }
     boolean isPasswd(String pass){

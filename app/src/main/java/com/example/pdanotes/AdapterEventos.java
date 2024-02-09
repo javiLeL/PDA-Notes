@@ -27,22 +27,19 @@ public class AdapterEventos extends RecyclerView.Adapter<AdapterEventos.AnimeVie
     }
 
     @NonNull
-    @Override
+    @Override//
     public AnimeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.estilo_evento, parent, false);
         return new AnimeViewHolder(v);
     }
-
-    @Override
+    @Override//
     public void onBindViewHolder(@NonNull AnimeViewHolder holder, int position) {
         holder.bind(eventos.get(position), context, pass, act);
     }
-
     @Override
     public int getItemCount() {
         return eventos.size();
     }
-
     public  static  class  AnimeViewHolder extends  RecyclerView.ViewHolder{
         TextView titulo, tipo, fechaYHora;
         View v;

@@ -4,12 +4,21 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 
 public class Usuario {
-    private String correo, nombre, password;
+    private String correo, nombre, telefono, password;
 
-    public Usuario(String correo, String nombre, String password) {
+    public Usuario(String correo, String nombre, String telefono, String password) {
         this.correo = correo;
         this.nombre = nombre;
+        this.telefono = telefono;
         this.password = getMD5(password);
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
     public String getCorreo() {

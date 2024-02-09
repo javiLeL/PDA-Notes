@@ -113,7 +113,7 @@ public class ModeloBBDD {
     }
     boolean insertarUsuario(Context context, Usuario datos){
         boolean resultado;
-        String sentencia = "INSERT INTO usuarios (correo, nombre, password) VALUES('"+datos.getCorreo()+"', '"+datos.getNombre()+"', '"+datos.getPassword()+"')";
+        String sentencia = "INSERT INTO usuarios (correo, nombre, telefono, password) VALUES('"+datos.getCorreo()+"', '"+datos.getNombre()+"', '"+datos.getTelefono()+"', '"+datos.getPassword()+"')";
         SQLiteDatabase sqLiteDatabase = this.getCon(context);
         try{
             sqLiteDatabase.execSQL(sentencia);
