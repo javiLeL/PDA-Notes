@@ -14,7 +14,7 @@
     <string name="terminos_y_condiciones2"><u>aqui</u></string>
     <string name="espanol">Español</string>
     <string name="ingles">English</string>
-    <string name="chino">中国</string>
+    <string name="chino">中文</string>
     <string-array name="tipos_de_evento">
         <item>Medico</item>
         <item>Boda</item>
@@ -51,4 +51,6 @@
         <item>Magenta</item>
         <item>Morado</item>
     </string-array>
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
