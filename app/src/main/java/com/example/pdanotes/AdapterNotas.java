@@ -53,8 +53,14 @@ public class AdapterNotas extends RecyclerView.Adapter<AdapterNotas.AnimeViewHol
             nota = itemView.findViewById(R.id.textViewTipoEvento);
         }
         void bind(Nota note, Context context, String pass, Activity act){
+            final int MAXNUM = 50;
             titulo.setText(note.getTitulo());
-            nota.setText(note.getNota());
+            if(note.getNota().length()>MAXNUM){
+                nota.setText(note.getNota().substring(0, MAXNUM-3)+"...");
+            }else{
+                nota.setText(note.getNota());
+            }
+
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
