@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.ContextMenu;
@@ -84,8 +85,9 @@ public class Registrar extends AppCompatActivity {
                         boolean isCreado = new ModeloBBDD().insertarUsuario(getApplicationContext(), new Usuario(correo, nombre,spinner.getSelectedItem().toString()+telefono, password));
                         if(!isCreado){
                             v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.error_btn));
-                            Toast.makeText(Registrar.this, "Error al crear el registro", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Registrar.this, "Usuario ya creado", Toast.LENGTH_SHORT).show();
                         }else {
+                            sendEmail(correo, "Informacion persoanl", "Su nombre de usuario: "+nombre+"\nSu telefono es: "+(spinner.getSelectedItem().toString()+telefono)+"\nSu contraseña es: "+password);
                             Toast.makeText(Registrar.this, "Registro Creado", Toast.LENGTH_SHORT).show();
                             finish();
                         }
@@ -138,5 +140,13 @@ public class Registrar extends AppCompatActivity {
     }
     boolean isNombre(String nombre){
         return nombre.length()<4;
+    }
+    void sendEmail(String email, String titulo, String texto){
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:"));
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
+        intent.putExtra(Intent.EXTRA_SUBJECT, titulo);
+        intent.putExtra(Intent.EXTRA_TEXT, texto);
+        startActivity(intent);
     }
 }
