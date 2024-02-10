@@ -88,6 +88,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), Registrar.class));
             }
         });
+
+        findViewById(R.id.buttonAcercaDe).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), AcercaDe.class));
+            }
+        });
     }
 
     @Override

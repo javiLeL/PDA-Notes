@@ -51,6 +51,20 @@
         <item>Magenta</item>
         <item>Morado</item>
     </string-array>
-<!-- TODO: Remove or change this placeholder text -->
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="question">\?</string>
+    <string name="sobreLaAPP">
+        <b>PDA Notes</b>\n
+        Es una app la cual esta diseñada para poseer notas y puede servir a varios usuarios a la par.
+        Para que las contraseñas sean mas seguras se hace uso de MD5 para poder tener la contraseña asegurada para cualquier
+        tipo de problema informatico.\n\n
+
+        <b>Notas</b>\n
+        Las notas se encriptan en un un algoritmo de encriptacion el cual se le denomina AES con la contraseña real lo cual si la base de datos es robada tu informacion estaria ha salvo gracias ha este sistema.\n\n
+
+        <b>Eventos</b>\n
+        Tambien posee un apartado de eventos el cual permite crear varios eventos que almacenan la fecha y hora del mismo junto con otros datos para poder organizar tu dia a dia. Estos eventos se ordenan por la fecha.
+
+    </string>
 </resources>

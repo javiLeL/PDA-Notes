@@ -23,11 +23,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" >
                 <item
-                    android:id="@+id/cerrar_nota"
+                    android:id="@+id/acerca_de"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:icon="@drawable/info"
-                    android:title="Sobre nosotros" />
+                    android:title="Acerca de..." />
             </menu>
         </item>
     </group>

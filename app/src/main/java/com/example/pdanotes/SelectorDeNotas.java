@@ -88,6 +88,8 @@ public class SelectorDeNotas extends AppCompatActivity implements  NavigationVie
             finish();
         } else if (item.getItemId()==R.id.apartado_de_ajustes) {
             startActivity(new Intent(this, Ajustes.class));
+        } else if (item.getItemId()==R.id.acerca_de){
+            startActivity(new Intent(this, AcercaDe.class));
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
