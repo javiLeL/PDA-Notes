@@ -70,6 +70,9 @@ Al se una app de caracter escolar presnta ciertos requisitos minimos los cuales 
     - [ ] Fragments
     - [x] Material Design
 
+# Instalacion
+Para instalar la app hay que descargar el archivo desde [aqui]() y poseteriormente hay que permitir el acceso ha applicaciones de fuentes desconocidas
+
 # Bibliografia
 
 - [ProgresBar](https://gist.github.com/codinginflow/477606b85ed11c537a81e80224361878)
