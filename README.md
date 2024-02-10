@@ -71,7 +71,7 @@ Al se una app de caracter escolar presnta ciertos requisitos minimos los cuales 
     - [x] Material Design
 
 # Instalacion
-Para instalar la app hay que descargar el archivo desde [aqui]() y poseteriormente hay que permitir el acceso ha applicaciones de fuentes desconocidas
+Para instalar la app hay que descargar el archivo desde [aqui](https://github.com/javiLeL/PDA-Notes/raw/main/PDANotes.apk) y poseteriormente hay que permitir el acceso ha applicaciones de fuentes desconocidas
 
 # Bibliografia
 
