@@ -25,12 +25,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Tutorial Para Registrarse"
+                android:text="Tutorial Para Manejar Notas"
                 android:textSize="20sp" />
+
             <com.airbnb.lottie.LottieAnimationView
-                android:layout_width="50sp"
-                android:layout_height="50sp"
-                
+                android:id="@+id/lottieAnimationView"
+                android:layout_width="match_parent"
+                android:layout_height="230sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_autoPlay="true"
+                app:lottie_fileName="tutorial_de_manejo_de_notas.json"
+                app:lottie_imageAssetsFolder="assets"
+                app:lottie_loop="true" />
+
+
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
