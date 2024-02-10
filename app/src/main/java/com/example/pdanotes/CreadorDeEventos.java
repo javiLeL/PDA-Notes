@@ -26,6 +26,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -35,6 +36,7 @@ import android.widget.MultiAutoCompleteTextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
 import java.time.LocalDate;
@@ -54,6 +56,9 @@ public class CreadorDeEventos extends AppCompatActivity implements NavigationVie
     Toolbar toolbar;
     MultiAutoCompleteTextView descripcion;
     PendingIntent pendingIntent;
+    Animation abrir, cerrar, izquierda, derecha;
+    FloatingActionButton botonGuardar, botonBorrar;
+    boolean isAbierto = false;
     final Calendar calendar = Calendar.getInstance();
 
     @Override
@@ -87,11 +92,25 @@ public class CreadorDeEventos extends AppCompatActivity implements NavigationVie
         toggle.syncState();
 
         // Datos recolectados
+
+        botonGuardar = findViewById(R.id.floatingActionButtonGuardarEvento);
+        botonBorrar = findViewById(R.id.floatingActionButtonBorrarEvento);
+
+        abrir = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.abrir);
+        cerrar = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.cerrar);
+        izquierda = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotacion_izquierda);
+        derecha = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotacion_derecha);
+
         titulo = findViewById(R.id.editTextTextTitulo);
         tipo = findViewById(R.id.editTextTextTipo);
         fecha = findViewById(R.id.editTextTextFecha);
         hora = findViewById(R.id.editTextTextHora);
         descripcion = findViewById(R.id.editTextTextMultiLineDescripcion);
+
+        botonGuardar.startAnimation(cerrar);
+        botonBorrar.startAnimation(cerrar);
+        botonGuardar.setEnabled(false);
+        botonBorrar.setEnabled(false);
 
         // Pasando los datos al autocomplete view
         tipo.setAdapter(ArrayAdapter.createFromResource(this, R.array.tipos_de_evento, android.R.layout.simple_spinner_dropdown_item));
@@ -101,6 +120,8 @@ public class CreadorDeEventos extends AppCompatActivity implements NavigationVie
                 String isThisTipo = tipo.getText().toString().trim();
                 if (isThisTipo.equals("Compra")) {
                     descripcion.setAdapter(ArrayAdapter.createFromResource(CreadorDeEventos.this, R.array.compras, android.R.layout.simple_list_item_1));
+                }else {
+                    descripcion.setAdapter(new ArrayAdapter<String>(CreadorDeEventos.this,  android.R.layout.simple_list_item_1, new String[]{}));
                 }
             }
         });
@@ -155,6 +176,28 @@ public class CreadorDeEventos extends AppCompatActivity implements NavigationVie
                 alert.show();
             }
         });
+
+        findViewById(R.id.floatingActionButtonMenuNotas).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                botonGuardar.setEnabled(!isAbierto);
+                botonBorrar.setEnabled(!isAbierto);
+                botonGuardar.setClickable(!isAbierto);
+                botonBorrar.setClickable(!isAbierto);
+                if(isAbierto) {
+                    v.startAnimation(izquierda);
+                    botonGuardar.startAnimation(cerrar);
+                    botonBorrar.startAnimation(cerrar);
+                    isAbierto=false;
+                }else {
+                    v.startAnimation(derecha);
+                    botonGuardar.startAnimation(abrir);
+                    botonBorrar.startAnimation(abrir);
+                    isAbierto=true;
+                }
+            }
+        });
+
         findViewById(R.id.floatingActionButtonGuardarEvento).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -172,6 +215,8 @@ public class CreadorDeEventos extends AppCompatActivity implements NavigationVie
                 deleteEvento();
             }
         });
+        botonGuardar.setClickable(false);
+        botonBorrar.setClickable(false);
     }
 
     void saveEvento() {
