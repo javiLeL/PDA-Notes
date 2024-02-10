@@ -43,7 +43,7 @@ public class ModeloBBDD {
     List<Evento> selectEventos(Context context, String correo, String pass){
         List<Evento> resultado = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = this.getCon(context);
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT id, titulo, tipo, fecha, hora, descripcion FROM eventos WHERE correo=?", new String[]{correo});
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT id, titulo, tipo, fecha, hora, descripcion FROM eventos WHERE correo=? ORDER BY fecha", new String[]{correo});
         if(cursor.moveToFirst()){
             do{
                 Integer id = cursor.getInt(0);

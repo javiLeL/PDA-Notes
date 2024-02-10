@@ -150,11 +150,11 @@ public class CreadorDeEventos extends AppCompatActivity implements NavigationVie
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                            fechaG = LocalDate.of(year, month, dayOfMonth);
+                            fechaG = LocalDate.of(year, month+1, dayOfMonth);
                             fecha.setText(fechaG.toString());
                         }
                     }
-                }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.DAY_OF_MONTH));
+                }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
 
                 if (alertDatePickerDialog != null) {
                     alertDatePickerDialog.show();
@@ -172,7 +172,7 @@ public class CreadorDeEventos extends AppCompatActivity implements NavigationVie
                             hora.setText(horaG.toString());
                         }
                     }
-                }, calendar.get(Calendar.HOUR), calendar.get(Calendar.MINUTE), true);
+                }, (calendar.get(Calendar.HOUR)+12)%24, calendar.get(Calendar.MINUTE), true);
                 alert.show();
             }
         });
