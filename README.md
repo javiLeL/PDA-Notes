@@ -65,9 +65,9 @@ Al se una app de caracter escolar presnta ciertos requisitos minimos los cuales 
 
 ### Puntuacion Extra
 
-- [ ] Se reserva UN PUNTO para elementos/funcionalidades que el alumno incluya además de las indicadas anteriormente.
-    - [ ] Librerías externas
-    - [ ] Fragments
+- [x] Se reserva UN PUNTO para elementos/funcionalidades que el alumno incluya además de las indicadas anteriormente.
+    - [x] Librerías externas
+    - [x] Fragments
     - [x] Material Design
 
 # Instalacion
