@@ -3,9 +3,21 @@ package com.example.pdanotes;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 
+/**
+ * Clase DTO
+ * @author JaviLeL
+ * @version 1.0.1
+ */
 public class Usuario {
     private String correo, nombre, telefono, password;
 
+    /**
+     * Construcotor con todos los datos
+     * @param correo
+     * @param nombre
+     * @param telefono
+     * @param password
+     */
     public Usuario(String correo, String nombre, String telefono, String password) {
         this.correo = correo;
         this.nombre = nombre;

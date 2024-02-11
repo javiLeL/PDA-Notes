@@ -12,16 +12,38 @@ import java.security.SecureRandom;
 import java.security.spec.KeySpec;
 import java.util.Base64;
 
+/**
+ * Clase DTO
+ * @author JaviLeL
+ * @version 1.0.1
+ */
 public class Nota {
+    // Se especifica como va ha encriptar
     private static final int KEY_LENGTH = 256;
     private static final int ITERATION_COUNT = 65536;
+
     private Integer id;
     String titulo, nota, correo;
+
+    /**
+     * Constructor de una nota sin id
+     * @param titulo
+     * @param nota
+     * @param correo
+     */
     public Nota(String titulo, String nota, String correo) {
         this.titulo = titulo;
         this.nota = nota;
         this.correo = correo;
     }
+
+    /**
+     * Constructor de una nota con id
+     * @param id
+     * @param titulo
+     * @param nota
+     * @param correo
+     */
     public Nota(Integer id, String titulo, String nota, String correo) {
         this.id = id;
         this.titulo = titulo;
@@ -50,9 +72,16 @@ public class Nota {
     public void setCorreo(String correo) {
         this.correo = correo;
     }
+
+    /**
+     * Metodo para encriptar las notas
+     * @param strToEncrypt
+     * @param secretKey
+     * @param salt
+     * @return
+     */
     public static String encrypt(String strToEncrypt, String secretKey, String salt) {
         try {
-
             SecureRandom secureRandom = new SecureRandom();
             byte[] iv = new byte[16];
             secureRandom.nextBytes(iv);
@@ -81,6 +110,14 @@ public class Nota {
         }
         return null;
     }
+
+    /**
+     * Metodo que se usara para desencriptar las notas
+     * @param strToDecrypt
+     * @param secretKey
+     * @param salt
+     * @return
+     */
     public static String decrypt(String strToDecrypt, String secretKey, String salt) {
 
         try {

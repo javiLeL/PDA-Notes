@@ -10,12 +10,24 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author JaviLeL
+ * @version 1.0.1
+ */
 public class ModeloBBDD {
+    // Se carga la base de datos especifica gracias al contexto que se le pasa
     public SQLiteDatabase getCon(Context context){
+        // Se carga la base de datos especifica
         SQLite conBBDD = new SQLite(context, "BBDD_PDA_Notes", null, 1);
         SQLiteDatabase sqLiteDatabase = conBBDD.getWritableDatabase();
         return  sqLiteDatabase;
     }
+
+    /**
+     * Metodo que borra un evento apartir de su id
+     * @param context
+     * @param id
+     */
     void deleteEventos(Context context, int id){
         String sentencia = "DELETE FROM eventos WHERE id="+id;
         SQLiteDatabase sqLiteDatabase = this.getCon(context);
@@ -24,6 +36,12 @@ public class ModeloBBDD {
         }catch (Exception e){
         }
     }
+
+    /**
+     * Metodo que borrar notas apartir de su id
+     * @param context
+     * @param id
+     */
     void deleteNotas(Context context, int id){
         String sentencia = "DELETE FROM notas WHERE id="+id;
         SQLiteDatabase sqLiteDatabase = this.getCon(context);
@@ -32,6 +50,12 @@ public class ModeloBBDD {
         }catch (Exception e){
         }
     }
+
+    /**
+     * Metodo que actualiza un evento apartir de otro (este debe de tener id para su correcto fucionamiento)
+     * @param context
+     * @param dato
+     */
     void updateEvento(Context context, Evento dato){
         String sentencia = "UPDATE eventos SET titulo='"+dato.getTitulo()+"', tipo='"+dato.getTipo()+"', fecha='"+dato.getFecha().toString()+"', hora='"+dato.getHora().toString()+"', descripcion='"+dato.getDescripcion()+"' WHERE id="+dato.getId();
         SQLiteDatabase sqLiteDatabase = this.getCon(context);
@@ -40,6 +64,15 @@ public class ModeloBBDD {
         }catch (Exception e){
         }
     }
+
+    /**
+     * Metodo que devuelve una lista de eventos los cuales se han guardado con anterioridad. Esto lo hace
+     * de forma ordenada por la fecha. Solo la del usuario que inicio sesion
+     * @param context
+     * @param correo
+     * @param pass
+     * @return
+     */
     List<Evento> selectEventos(Context context, String correo, String pass){
         List<Evento> resultado = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = this.getCon(context);
@@ -63,6 +96,13 @@ public class ModeloBBDD {
         cursor.close();
         return resultado;
     }
+
+    /**
+     * Metodo que se encaraga de guardar un evento dentro de la base de datos
+     * @param context
+     * @param datos
+     * @return
+     */
     boolean insertarEvento(Context context, Evento datos){
         boolean resultado;
         String sentencia = "INSERT INTO eventos(titulo, tipo, fecha, hora, descripcion, correo) VALUES('"+datos.getTitulo()+"', '"+datos.getTipo()+"', '"+datos.getFecha().toString()+"', '"+datos.getHora().toString()+"', '"+datos.getDescripcion()+"', '"+datos.getCorreo()+"')";
@@ -76,6 +116,12 @@ public class ModeloBBDD {
         return resultado;
     }
 
+    /**
+     * Metodo que actualiza una nota apartir de otra y de su id
+     * @param context
+     * @param id
+     * @param nota
+     */
     void updateNota(Context context, int id, Nota nota){
         String sentencia = "UPDATE notas SET titulo='"+nota.getTitulo()+"', nota='"+nota.getNota()+"', correo='"+nota.getCorreo()+"' WHERE id="+id;
         SQLiteDatabase sqLiteDatabase = this.getCon(context);
@@ -84,6 +130,15 @@ public class ModeloBBDD {
         }catch (Exception e){
         }
     }
+
+    /**
+     * Metodo que devuelve una lista de notas que se encuentran dentro de la base de datos
+     * Solo la del usuario que inicio sesion
+     * @param context
+     * @param correo
+     * @param pass
+     * @return
+     */
     List<Nota> selectNotas(Context context, String correo, String pass){
         List<Nota> resultado = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = this.getCon(context);
@@ -99,6 +154,13 @@ public class ModeloBBDD {
         cursor.close();
         return resultado;
     }
+
+    /**
+     * Metodo que inserta una nota dentro de la base de datos
+     * @param context
+     * @param datos
+     * @return
+     */
     boolean insertarNotas(Context context, Nota datos){
         boolean resultado;
         String sentencia = "INSERT INTO notas (titulo, nota, correo) VALUES('"+datos.getTitulo()+"', '"+datos.getNota()+"', '"+datos.getCorreo()+"')";
@@ -111,6 +173,13 @@ public class ModeloBBDD {
         }
         return resultado;
     }
+
+    /**
+     * Metodo que inserta un usuario dentro de la base de datos
+     * @param context
+     * @param datos
+     * @return
+     */
     boolean insertarUsuario(Context context, Usuario datos){
         boolean resultado;
         String sentencia = "INSERT INTO usuarios (correo, nombre, telefono, password) VALUES('"+datos.getCorreo()+"', '"+datos.getNombre()+"', '"+datos.getTelefono()+"', '"+datos.getPassword()+"')";
@@ -123,6 +192,13 @@ public class ModeloBBDD {
         }
         return resultado;
     }
+
+    /**
+     * Metodo que devuelve un usuario apartir de su correo electronico
+     * @param context
+     * @param correo
+     * @return
+     */
     String[] selectUsuario(Context context, String correo){
         String[] resultado = new String[2];
         SQLiteDatabase sqLiteDatabase = this.getCon(context);

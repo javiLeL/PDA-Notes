@@ -20,6 +20,10 @@ import com.google.android.material.navigation.NavigationView;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author JaviLeL
+ * @version 1.0.1
+ */
 public class SelectorDeNotas extends AppCompatActivity implements  NavigationView.OnNavigationItemSelectedListener{
     DrawerLayout drawer;
     NavigationView navigationView;
@@ -31,55 +35,78 @@ public class SelectorDeNotas extends AppCompatActivity implements  NavigationVie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selector_de_notas);
 
+        // Pongo que la orientacion de movil es obligatoriamente en vertical
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        // Creando el menu
+        // Creo el menu de arriva a la izquierda
         drawer = findViewById(R.id.drawer_principal);
         navigationView = findViewById(R.id.navigation_principal);
         toolbar = findViewById(R.id.toolbar);
-
         setSupportActionBar(toolbar);
         navigationView.setNavigationItemSelectedListener(this);
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.app_name, R.string.app_name);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        // Recogiendo informacion que se le pasa
+        // Recogiendo informacion que se le pasa por el intent
         correo = getIntent().getExtras().getString("correo");
         pass = getIntent().getExtras().getString("pass");
 
+        // Cargo el RecyclerView por la id
         rv = findViewById(R.id.rv);
-        // rv.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-        update();
+
+        // Si se pulsa el boton flotante
         findViewById(R.id.floatingActionButtonCrearEvento).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Se creara y lanzara un intent con el correo y contraseña real del usuario
                 Intent intent = new Intent(getApplicationContext(), CreadorDeNotas.class);
                 intent.putExtra("correo", correo);
                 intent.putExtra("pass", pass);
                 startActivity(intent);
             }
         });
-    }
-    void update(){
-        List<Nota> notas = new ArrayList<>(new ModeloBBDD().selectNotas(getApplicationContext(), correo, pass));
-        if(notas.size()<=1){
-            rv.setLayoutManager(new StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL));
-        }else{
-            rv.setLayoutManager(new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL));
-        }
-        rv.setAdapter(new AdapterNotas(notas, getApplicationContext(), pass, this));
-        //rv.setHasFixedSize(fa);
-    }
-    @Override
-    protected void onRestart() {
-        super.onRestart();
+        // Actualizara el RecicleView
         update();
     }
 
+    /**
+     * Metodo que carga todas las notas de un usuario
+     */
+    void update(){
+        // Obtiene la lista de notas
+        List<Nota> notas = new ArrayList<>(new ModeloBBDD().selectNotas(getApplicationContext(), correo, pass));
+
+        if(notas.size()<=1){    // Si esta es igual o inferior a una nota
+            // Las notas en horizontal seran de una
+            rv.setLayoutManager(new StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL));
+        }else{                  // Si es de mas de una
+            // Las notas en horizontal seran de dos
+            rv.setLayoutManager(new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL));
+        }
+        // Se le pasara el adaptador con todas las notas recolectadas
+        rv.setAdapter(new AdapterNotas(notas, getApplicationContext(), pass, this));
+        //rv.setHasFixedSize(fa);
+    }
+
+    /**
+     * Al reiniciar el layout
+     */
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        // Volvera a cargar todas las notas que se encuentre
+        update();
+    }
+
+    /**
+     * Metodo que detecta que se ha pulsado un boton en el menu
+     * @param item The selected item
+     * @return
+     */
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        // Dependiendo de lo que se presione hara una accion u otra
         if (item.getItemId()==R.id.apartado_de_eventos){
             Intent intent = new Intent(this, SelectorDeEventos.class);
             intent.putExtra("correo", correo);
@@ -91,6 +118,7 @@ public class SelectorDeNotas extends AppCompatActivity implements  NavigationVie
         } else if (item.getItemId()==R.id.acerca_de){
             startActivity(new Intent(this, AcercaDe.class));
         }
+        // Simpre se cerrar el menu
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

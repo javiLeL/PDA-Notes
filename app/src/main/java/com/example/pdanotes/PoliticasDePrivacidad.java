@@ -3,6 +3,7 @@ package com.example.pdanotes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentContainerView;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioButton;
@@ -10,28 +11,58 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * @author JaviLeL
+ * @version 1.0.1
+ */
 public class PoliticasDePrivacidad extends AppCompatActivity {
     FragmentContainerView fragmentContainerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_politicas_de_privacidad);
+
+        // Pongo que la orientacion de movil es obligatoriamente en vertical
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        // Se pondra el idioma 1 como predeterminado (español)
         cambiarPorIdioma(1);
 
+        // Si se presiona uno de los botones que conforman el radio Group
         ((RadioGroup) findViewById(R.id.idiomas)).setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                // Toast.makeText(PoliticasDePrivacidad.this, ""+espanol.isSelected(), Toast.LENGTH_SHORT).show();
-                if (checkedId==R.id.radioButtonEspano){
+                // Dependiendo de lo selecionado se realizara una operacion u otra
+                if (checkedId==R.id.radioButtonEspano){         // Si se seleciona el español
+                    // Cargara el idioma español (1)
                     cambiarPorIdioma(1);
-                }else if(checkedId==R.id.radioButtonIngles){
+                }else if(checkedId==R.id.radioButtonIngles){    // Si se seleciona el ingles
+                    // Se cargara el idioma ingles (2)
                     cambiarPorIdioma(2);
-                } else if (checkedId==R.id.radioButtonChino) {
+                } else if (checkedId==R.id.radioButtonChino) {  // Si se seleciona el chino
+                    // Se cargara el idioma chino (3)
                     cambiarPorIdioma(3);
                 }
             }
         });
     }
+
+    /**
+     * Meotodo que pasa la informacion a sus respectivos campos para que sean visualizados de forma correcta
+     * @param selecionIdioma
+     * @param TyCdUTitulo
+     * @param TyCdUInfo
+     * @param CdUTitulo
+     * @param CdUInfo
+     * @param pTitulo
+     * @param pInfo
+     * @param UaTitulo
+     * @param UaInfo
+     * @param ctycTitulo
+     * @param ctycInfo
+     * @param cTitulo
+     * @param cInfo
+     */
     void setText(String selecionIdioma, String TyCdUTitulo, String TyCdUInfo, String CdUTitulo, String CdUInfo, String pTitulo, String pInfo, String UaTitulo, String UaInfo, String ctycTitulo, String ctycInfo, String cTitulo, String cInfo){
         TextView seleccionarPolitica = findViewById(R.id.textViewTituloSeleccionarIdioma);
         TextView sTyCdUTitulo = findViewById(R.id.TyCdUTitulo);
@@ -61,6 +92,11 @@ public class PoliticasDePrivacidad extends AppCompatActivity {
         scTitulo.setText(cTitulo);
         scInfo.setText(cInfo);
     }
+
+    /**
+     * Metodo encargado de poner un idioma u otro dependiendo de lo que se le pase contiene el texto de todos los idiomas
+     * @param i
+     */
     void cambiarPorIdioma(int i){
         switch (i){
             case 1:

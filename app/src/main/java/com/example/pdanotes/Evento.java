@@ -6,11 +6,26 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+/**
+ * Calse DTO
+ * @author JaviLeL
+ * @version 1.0.1
+ */
 public class Evento {
     private Integer id;
     private String titulo, tipo, descripcion, correo;
     private  LocalDate fecha;
     private LocalTime hora;
+
+    /**
+     * Constuctor sin id
+     * @param titulo
+     * @param tipo
+     * @param fecha
+     * @param hora
+     * @param descripcion
+     * @param correo
+     */
 
     public Evento(String titulo, String tipo, LocalDate fecha, LocalTime hora, String descripcion, String correo) {
         this.titulo = titulo;
@@ -21,6 +36,16 @@ public class Evento {
         this.correo = correo;
     }
 
+    /**
+     * Construcotor con id
+     * @param id
+     * @param titulo
+     * @param tipo
+     * @param fecha
+     * @param hora
+     * @param descripcion
+     * @param correo
+     */
     public Evento(Integer id, String titulo, String tipo, LocalDate fecha, LocalTime hora, String descripcion, String correo) {
         this.id = id;
         this.titulo = titulo;

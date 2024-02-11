@@ -7,10 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
+ * Clase que maneja un fragment
+ * @author JaviLeL
+ * @version 1.0.1
  * A simple {@link Fragment} subclass.
  * Use the {@link TutorialsFragment#newInstance} factory method to
  * create an instance of this fragment.
- *
  */
 public class TutorialsFragment extends Fragment {
 
