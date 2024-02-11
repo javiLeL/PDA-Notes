@@ -10,7 +10,6 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -23,7 +22,6 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
@@ -36,6 +34,8 @@ import android.widget.MultiAutoCompleteTextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.pdanotes.bbdd.ModeloBBDD;
+import com.example.pdanotes.dto.Evento;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 

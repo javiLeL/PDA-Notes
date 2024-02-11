@@ -15,6 +15,9 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.example.pdanotes.bbdd.ModeloBBDD;
+import com.example.pdanotes.dto.Nota;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;

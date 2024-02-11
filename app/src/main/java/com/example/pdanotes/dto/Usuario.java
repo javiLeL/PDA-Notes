@@ -1,4 +1,4 @@
-package com.example.pdanotes;
+package com.example.pdanotes.dto;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;

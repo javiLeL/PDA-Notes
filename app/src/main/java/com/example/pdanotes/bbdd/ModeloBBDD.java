@@ -1,9 +1,13 @@
-package com.example.pdanotes;
+package com.example.pdanotes.bbdd;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
+
+import com.example.pdanotes.dto.Evento;
+import com.example.pdanotes.dto.Nota;
+import com.example.pdanotes.dto.Usuario;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -28,7 +32,7 @@ public class ModeloBBDD {
      * @param context
      * @param id
      */
-    void deleteEventos(Context context, int id){
+    public void deleteEventos(Context context, int id){
         String sentencia = "DELETE FROM eventos WHERE id="+id;
         SQLiteDatabase sqLiteDatabase = this.getCon(context);
         try{
@@ -42,7 +46,7 @@ public class ModeloBBDD {
      * @param context
      * @param id
      */
-    void deleteNotas(Context context, int id){
+    public void deleteNotas(Context context, int id){
         String sentencia = "DELETE FROM notas WHERE id="+id;
         SQLiteDatabase sqLiteDatabase = this.getCon(context);
         try{
@@ -56,7 +60,7 @@ public class ModeloBBDD {
      * @param context
      * @param dato
      */
-    void updateEvento(Context context, Evento dato){
+    public void updateEvento(Context context, Evento dato){
         String sentencia = "UPDATE eventos SET titulo='"+dato.getTitulo()+"', tipo='"+dato.getTipo()+"', fecha='"+dato.getFecha().toString()+"', hora='"+dato.getHora().toString()+"', descripcion='"+dato.getDescripcion()+"' WHERE id="+dato.getId();
         SQLiteDatabase sqLiteDatabase = this.getCon(context);
         try{
@@ -73,7 +77,7 @@ public class ModeloBBDD {
      * @param pass
      * @return
      */
-    List<Evento> selectEventos(Context context, String correo, String pass){
+    public List<Evento> selectEventos(Context context, String correo, String pass){
         List<Evento> resultado = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = this.getCon(context);
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT id, titulo, tipo, fecha, hora, descripcion FROM eventos WHERE correo=? ORDER BY fecha", new String[]{correo});
@@ -103,7 +107,7 @@ public class ModeloBBDD {
      * @param datos
      * @return
      */
-    boolean insertarEvento(Context context, Evento datos){
+    public boolean insertarEvento(Context context, Evento datos){
         boolean resultado;
         String sentencia = "INSERT INTO eventos(titulo, tipo, fecha, hora, descripcion, correo) VALUES('"+datos.getTitulo()+"', '"+datos.getTipo()+"', '"+datos.getFecha().toString()+"', '"+datos.getHora().toString()+"', '"+datos.getDescripcion()+"', '"+datos.getCorreo()+"')";
         SQLiteDatabase sqLiteDatabase = this.getCon(context);
@@ -122,7 +126,7 @@ public class ModeloBBDD {
      * @param id
      * @param nota
      */
-    void updateNota(Context context, int id, Nota nota){
+    public void updateNota(Context context, int id, Nota nota){
         String sentencia = "UPDATE notas SET titulo='"+nota.getTitulo()+"', nota='"+nota.getNota()+"', correo='"+nota.getCorreo()+"' WHERE id="+id;
         SQLiteDatabase sqLiteDatabase = this.getCon(context);
         try{
@@ -139,7 +143,7 @@ public class ModeloBBDD {
      * @param pass
      * @return
      */
-    List<Nota> selectNotas(Context context, String correo, String pass){
+    public List<Nota> selectNotas(Context context, String correo, String pass){
         List<Nota> resultado = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = this.getCon(context);
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT id, titulo, nota FROM notas WHERE correo=?", new String[]{correo});
@@ -161,7 +165,7 @@ public class ModeloBBDD {
      * @param datos
      * @return
      */
-    boolean insertarNotas(Context context, Nota datos){
+    public boolean insertarNotas(Context context, Nota datos){
         boolean resultado;
         String sentencia = "INSERT INTO notas (titulo, nota, correo) VALUES('"+datos.getTitulo()+"', '"+datos.getNota()+"', '"+datos.getCorreo()+"')";
         SQLiteDatabase sqLiteDatabase = this.getCon(context);
@@ -180,7 +184,7 @@ public class ModeloBBDD {
      * @param datos
      * @return
      */
-    boolean insertarUsuario(Context context, Usuario datos){
+    public boolean insertarUsuario(Context context, Usuario datos){
         boolean resultado;
         String sentencia = "INSERT INTO usuarios (correo, nombre, telefono, password) VALUES('"+datos.getCorreo()+"', '"+datos.getNombre()+"', '"+datos.getTelefono()+"', '"+datos.getPassword()+"')";
         SQLiteDatabase sqLiteDatabase = this.getCon(context);
@@ -199,7 +203,7 @@ public class ModeloBBDD {
      * @param correo
      * @return
      */
-    String[] selectUsuario(Context context, String correo){
+    public String[] selectUsuario(Context context, String correo){
         String[] resultado = new String[2];
         SQLiteDatabase sqLiteDatabase = this.getCon(context);
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT nombre, password FROM usuarios WHERE correo=?", new String[]{correo});

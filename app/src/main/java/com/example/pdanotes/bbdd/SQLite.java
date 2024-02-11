@@ -1,4 +1,4 @@
-package com.example.pdanotes;
+package com.example.pdanotes.bbdd;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

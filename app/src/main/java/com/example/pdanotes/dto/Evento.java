@@ -1,4 +1,4 @@
-package com.example.pdanotes;
+package com.example.pdanotes.dto;
 
 import android.os.Build;
 

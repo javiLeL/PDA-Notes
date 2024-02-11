@@ -12,15 +12,14 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.pdanotes.bbdd.ModeloBBDD;
+import com.example.pdanotes.dto.Evento;
 import com.google.android.material.navigation.NavigationView;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
