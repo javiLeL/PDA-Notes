@@ -20,7 +20,7 @@ public class AcercaDe extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
         AdaptadorFragmentosAcercaDe adapter = new AdaptadorFragmentosAcercaDe(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         adapter.add(new SobreLaAppFragment(), "Sobre la app");
-        adapter.add(new TutorialsFragment(), "Tutoriales");
+        adapter.add(new TutorialsFragment(), "Guia de Usuario");
         viewPager.setAdapter(adapter);
     }
 }

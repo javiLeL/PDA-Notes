@@ -19,9 +19,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
-
             <TextView
-                android:id="@+id/textView3"
+                android:padding="20sp"
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Tutorial para registrarse"
+                android:textSize="20sp" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottieAnimationView2"
+                android:layout_width="match_parent"
+                android:layout_height="230sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_autoPlay="true"
+                app:lottie_fileName="tutorial_registrarse.json"
+                app:lottie_imageAssetsFolder="assets"
+                app:lottie_loop="true" />
+            <TextView
+                android:padding="20sp"
+                android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -41,7 +62,48 @@
                 app:lottie_imageAssetsFolder="assets"
                 app:lottie_loop="true" />
 
+            <TextView
+                android:padding="20sp"
+                android:id="@+id/textView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Tutorial Para Manejar Eventos"
+                android:textSize="20sp" />
 
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottieAnimationView1"
+                android:layout_width="match_parent"
+                android:layout_height="230sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_autoPlay="true"
+                app:lottie_fileName="tutorial_manejo_de_eventos.json"
+                app:lottie_imageAssetsFolder="assets"
+                app:lottie_loop="true" />
+            <TextView
+                android:padding="20sp"
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Tutorial Para Manejar Opciones"
+                android:textSize="20sp" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottieAnimationView3"
+                android:layout_width="match_parent"
+                android:layout_height="230sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_autoPlay="true"
+                app:lottie_fileName="tutorial_manejo_de_opciones.json"
+                app:lottie_imageAssetsFolder="assets"
+                app:lottie_loop="true" />
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
